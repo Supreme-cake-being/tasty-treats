@@ -1,0 +1,12 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-background {
+  background-size: cover;
+  background-position: center;
+  width: 250px;
+  height: 287px;
+  border-radius: 15px;
+}
