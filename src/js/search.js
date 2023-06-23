@@ -28,53 +28,34 @@ async function fetchAllRecipes() {
   }
 }
 
-// Функція для виведення заголовків рецептів, що містять задане ключове слово.
-function printTitles(data, keyword) {
+// Функція для створення розмітки карток рецептів, що містять задане ключове слово.
+function createGallery(data, keyword) {
+  galleryEl.innerHTML = '';
+
   if (data && data.length > 0) {
-    const titles = data
+    const card = data
       .filter(
         item =>
           item.title && item.title.toLowerCase().includes(keyword.toLowerCase())
       )
-      .map(item => item.title);
-    console.log('Заголовки за ключовим словом:', titles);
-
-    const recipeCards = data
-      .filter(
-        item =>
-          item.title && item.title.toLowerCase().includes(keyword.toLowerCase())
-      )
-      .map(item => createRecipeCard(item));
-
-    galleryEl.innerHTML = '';
-    recipeCards.forEach(card => {
-      galleryEl.appendChild(card);
-    });
+      .map(recipe => {
+        return `<div class="card-recipe" style="background-image: url(${recipe.preview})">
+                  <svg class="card-heart"
+                    src="./images/heart-card.svg"
+                    width="22"
+                    height="22" />
+                  <h3 class="card-title">${recipe.title}</h3>
+                  <p class="card-description">${recipe.description}</p>
+                  <button type="button" class="card-button">
+                    See recipe
+                  </button>
+                </div>`;
+      })
+      .join('');
+    galleryEl.innerHTML += card;
   } else {
     console.log('Немає даних для виведення заголовків');
-    galleryEl.innerHTML = '';
   }
-}
-
-// Функція для створення розмітки картки рецепта.
-function createRecipeCard(recipe) {
-  const card = document.createElement('div');
-  card.classList.add('card');
-
-  const cardBackground = document.createElement('div');
-  cardBackground.classList.add('card-background');
-  cardBackground.style.backgroundImage = `url(${recipe.preview})`;
-  card.appendChild(cardBackground);
-
-  const title = document.createElement('h2');
-  title.textContent = recipe.title;
-  card.appendChild(title);
-
-  const description = document.createElement('p');
-  description.textContent = recipe.description;
-  card.appendChild(description);
-
-  return card;
 }
 
 // Функція для виконання запиту на отримання рецептів за заданим номером сторінки.
@@ -95,7 +76,7 @@ async function fetchRecipes(page) {
 // та виведення заголовків, що містять це слово у консоль.
 async function fetchDataAndPrintTitles(keyword) {
   const data = await fetchAllRecipes();
-  printTitles(data, keyword);
+  createGallery(data, keyword);
 }
 
 // Використовуємо debounce для затримки виконання функції fetchDataAndPrintTitles
