@@ -1,6 +1,31 @@
 @import '../../../node_modules/swiper/swiper-bundle.css';
 
+.content-container {
+  width: 446px;
+  height: auto;
+}
+
+.hero-title {
+}
+
 .swiper-slide {
   display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
+}
+
+/* .swiper-slide_first {
+  max-width: 147px;
+}
+
+.swiper-slide_second {
+  max-width: ;
+}
+.swiper-slide_third {
+  max-width: ;
+} */
+
+.hero-section {
+  max-width: 1200px;
+  display: flex;
 }
