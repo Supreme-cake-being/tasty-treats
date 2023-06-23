@@ -18,7 +18,9 @@ const swiper = new Swiper('.swiper', {
   // If we need pagination
   pagination: {
     el: '.swiper .swiper-pagination',
+    type: 'bullets',
     clickable: true,
+    bulletActiveClass: true,
   },
 });
 
