@@ -20,7 +20,6 @@ async function fetchAllRecipes() {
 
     const results = await Promise.all(promises);
     const allRecipes = results.flatMap(result => result.results);
-    console.log('Усі рецепти:', allRecipes);
 
     return allRecipes;
   } catch (error) {
@@ -62,6 +61,11 @@ function createRecipeCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card');
 
+  const cardBackground = document.createElement('div');
+  cardBackground.classList.add('card-background');
+  cardBackground.style.backgroundImage = `url(${recipe.preview})`;
+  card.appendChild(cardBackground);
+
   const title = document.createElement('h2');
   title.textContent = recipe.title;
   card.appendChild(title);
@@ -86,13 +90,6 @@ async function fetchRecipes(page) {
     return null;
   }
 }
-
-// Функція для отримання всіх рецептів та виведення їх у консоль.
-async function fetchDataTitles() {
-  const data = await fetchAllRecipes();
-  printTitles(data);
-}
-fetchDataTitles();
 
 // Функція для виконання запиту на отримання рецептів за заданим ключовим словом
 // та виведення заголовків, що містять це слово у консоль.
