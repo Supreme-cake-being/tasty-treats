@@ -38,7 +38,7 @@ function createGallery(data, keyword) {
         item =>
           item.title && item.title.toLowerCase().includes(keyword.toLowerCase())
       )
-      .forEach(recipe => {
+      .map(recipe => {
         const card = document.createElement('div');
         card.classList.add('card-recipe');
         card.innerHTML = `<svg class="card-heart"
