@@ -33,26 +33,26 @@ function createGallery(data, keyword) {
   galleryEl.innerHTML = '';
 
   if (data && data.length > 0) {
-    data
+    const card = data
       .filter(
         item =>
           item.title && item.title.toLowerCase().includes(keyword.toLowerCase())
       )
       .map(recipe => {
-        const card = document.createElement('div');
-        card.classList.add('card-recipe');
-        card.innerHTML = `<svg class="card-heart"
-                           src="./images/heart-card.svg"
-                           width="22"
-                           height="22" />
-                          <h3 class="card-title">${recipe.title}</h3>
-                          <p class="card-description">${recipe.description}</p>
-                          <button type="button" class="card-button">
-                            See recipe
-                          </button>`;
-        card.style.backgroundImage = `url(${recipe.preview})`;
-        galleryEl.appendChild(card);
-      });
+        return `<div class="card-recipe" style="background-image: url(${recipe.preview})">
+                  <svg class="card-heart"
+                    src="./images/heart-card.svg"
+                    width="22"
+                    height="22" />
+                  <h3 class="card-title">${recipe.title}</h3>
+                  <p class="card-description">${recipe.description}</p>
+                  <button type="button" class="card-button">
+                    See recipe
+                  </button>
+                </div>`;
+      })
+      .join('');
+    galleryEl.innerHTML += card;
   } else {
     console.log('Немає даних для виведення заголовків');
   }
