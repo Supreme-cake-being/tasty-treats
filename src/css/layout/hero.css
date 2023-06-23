@@ -1,0 +1,6 @@
+@import '../../../node_modules/swiper/swiper-bundle.css';
+
+.swiper-slide {
+  display: flex;
+  margin-bottom: 20px;
+}
