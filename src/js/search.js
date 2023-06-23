@@ -57,18 +57,18 @@ async function recipes() {
 }
 recipes();
 
-async function recipes() {
-  try {
-    const response = await fetch(
-      'https://tasty-treats-backend.p.goit.global/api/recipes'
-    );
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
-  }
-}
-recipes();
+// async function recipes() {
+//   try {
+//     const response = await fetch(
+//       'https://tasty-treats-backend.p.goit.global/api/recipes'
+//     );
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Помилка під час виконання запиту:', error);
+//   }
+// }
+// recipes();
 
 // async function fetchRecipes() {
 //   try {
