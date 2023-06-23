@@ -1,0 +1,13 @@
+:root {
+  /* text colors */
+  --light-theme-text: #050505;
+  --light-theme-btn-text: rgba(5, 5, 5, 0.5);
+
+  --dark-theme-text: #ffffff;
+  --accent-color: #9bb537;
+
+  --stars-color: #eea10c;
+
+  /* animation */
+  --animation: cubic-bezier(0.4, 0, 0.2, 1);
+}

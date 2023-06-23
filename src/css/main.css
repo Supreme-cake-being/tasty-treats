@@ -11,4 +11,6 @@
 /* layout */
 @import url('./layout/header.css');
 @import url('./layout/hero.css');
+@import url('./layout/gallery.css');
 @import url('./layout/modals.css');
+@import url('./layout/categories.css');
