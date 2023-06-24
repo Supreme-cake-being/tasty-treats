@@ -33,4 +33,6 @@ const swiper = new Swiper('.swiper', {
 // Now you can use all slider methods like
 // swiper.slideNext();
 
-const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/events';
+const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
+let response = axios.get(`${BASE_URL}/events`);
+console.log(response);
