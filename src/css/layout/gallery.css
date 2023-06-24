@@ -20,10 +20,15 @@
 .card-title {
   margin-top: 128px;
   margin-left: 16px;
-  text-transform: uppercase;
+  width: 173px;
+  height: 18px;
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-description {
