@@ -2,7 +2,7 @@ import { fetchAllRecipes } from '../js/service/API';
 
 const galleryEl = document.querySelector('.gallery');
 
-const { titles, previews, descriptions } = await fetchAllRecipes();
+const { titles, previews, descriptions } = fetchAllRecipes();
 
 const card = previews
   .map((preview, index) => {
