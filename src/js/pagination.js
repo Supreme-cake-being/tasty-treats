@@ -1,8 +1,7 @@
 import Pagination from 'tui-pagination';
 
-// Отримуємо контейнер для розміщення пагінації
 const container = document.querySelector('#tui-pagination-container');
-// Створюємо екземпляр пагінації із заданими опціями
+// Eкземпляр пагінації із  опціями
 const pagination = new Pagination(container, {
   totalItems: 10,
   itemsPerPage: 9,
