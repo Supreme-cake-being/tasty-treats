@@ -1,19 +1,23 @@
-import Swiper, { Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
+import axios from 'axios';
 
-Swiper.use({ Pagination });
+// Swiper.use({ Navigation, Pagination });
 
 const swiper = new Swiper('.swiper', {
-  slidesPerView: 1.5,
+  slidesPerView: 1.25,
+  initialSlide: 1,
   centeredSlides: true,
-  loop: true,
-  lazyLoading: true,
-  keyboard: {
-    enabled: true,
+  // loop: true,
+  // lazyLoading: true,
+  // keyboard: {
+  //   enabled: true,
+  // },
+  modules: [Navigation, Pagination],
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
-  autoplay: {
-    delay: 1000,
-  },
-  //   spaceBetween: 16,
+  spaceBetween: 16,
 
   // If we need pagination
   pagination: {
@@ -24,7 +28,9 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-const swiperEl = document.querySelector('.swiper').swiper;
+// const swiperEl = document.querySelector('.swiper').swiper;
 
 // Now you can use all slider methods like
-swiperEl.slideNext();
+// swiper.slideNext();
+
+const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/events';
