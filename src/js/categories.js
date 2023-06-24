@@ -1,6 +1,6 @@
 import { fetchCategories, fetchAllRecipes } from '../js/service/API';
 
-const galleryEl = document.querySelector('.gallery');
+// const galleryEl = document.querySelector('.gallery');
 
 async function createCategoryButtons() {
   const categoryListEl = document.querySelector('.categories-list');
