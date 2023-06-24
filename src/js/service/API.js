@@ -1,3 +1,6 @@
+import axios from 'axios';
+const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
+
 export const fetchAllRecipes = async () => {
   try {
     const mainResponse = await fetch(
@@ -97,3 +100,15 @@ export const fetchCategories = async () => {
     return [];
   }
 };
+
+export async function fetchEvents() {
+  try {
+    let response = await axios.get(`${BASE_URL}/events`);
+    let result = await response.data;
+    console.log(result);
+
+    return result;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
