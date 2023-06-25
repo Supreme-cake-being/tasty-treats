@@ -1,0 +1,126 @@
+.search-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.search-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: rgba(5, 5, 5, 0.5);
+}
+
+.input-search,
+.select-time,
+.select-area,
+.select-ingredients {
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  border-radius: 15px;
+  font-size: 14px;
+  color: rgba(5, 5, 5, 0.5);
+  padding: 14px 18px;
+}
+
+.input-search::placeholder,
+.select-time::placeholder,
+.select-area::placeholder,
+.select-ingredients::placeholder {
+  color: rgba(5, 5, 5, 0.5);
+}
+.input-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background-image: url(/images/search.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.input-search {
+  padding-left: 48px;
+}
+
+.input-container {
+  width: 335px;
+}
+
+.select-ingredients {
+  width: 188px;
+}
+.select-time,
+.select-area {
+  width: 160px;
+}
+.first {
+  flex-basis: 100%;
+}
+
+.second,
+.third {
+  flex-basis: 40%;
+}
+
+.fourth {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .search-list {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .label {
+    font-size: 14px;
+  }
+
+  .input-container {
+    width: 278px;
+  }
+
+  .select-time {
+    width: 125px;
+  }
+  .select-area {
+    width: 141px;
+  }
+
+  .first,
+  .second {
+    flex-basis: 40%;
+  }
+
+  .third,
+  .fourth {
+    flex-basis: 20%;
+    clear: both;
+  }
+  .input-search,
+  .select-time,
+  .select-area,
+  .select-ingredients {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .search-list {
+    flex-direction: row;
+  }
+  .first,
+  .second,
+  .third,
+  .fourth {
+    flex-basis: content;
+  }
+}
