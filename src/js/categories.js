@@ -1,45 +1,65 @@
-import { fetchCategories, fetchAllRecipes } from '../js/service/API';
+import { fetchRecipes, fetchRecipesByCategory, fetchCategories } from '../js/service/API';
+import { createMarkup } from "./create-markup";
 
-const galleryEl = document.querySelector('.gallery');
+const containerWidth = document.querySelector('.container');
+const allCategoriesBtn = document.querySelector('.categories-btn');
+const categories = document.querySelector('.categories-list');
+const gallery = document.querySelector('.gallery');
 
-async function createCategoryButtons() {
+allCategoriesBtn.addEventListener('click', async () => {
+    gallery.innerHTML = '';
+    // const pageLimit = getPageLimit();
+
+    const recipes = await fetchRecipes();
+    const { results } = recipes;
+
+  createMarkup(results);
+})
+
+categories.addEventListener('click', async (e) => {
+    if (e.target.nodeName !== 'BUTTON')
+        return;
+    
+    gallery.innerHTML = '';
+    // const pageLimit = getPageLimit();
+    
+    const categoryName = e.target.textContent.trim();
+    const recipes = await fetchRecipesByCategory(categoryName);
+    const { results } = recipes;
+
+    createMarkup(results);
+});
+
+// const getPageLimit = () => {
+//     let pageLimit;
+//     switch (containerWidth.clientWidth) {
+//         case 1280:
+//             pageLimit = 9;
+//             break;
+        
+//         case 768:
+//             pageLimit = 8;
+//             break;
+        
+//         default:
+//             pageLimit = 6;
+//             break;   
+//     }
+//     return pageLimit;
+// }
+
+const createCategoryButtons = async () => {
   const categoryListEl = document.querySelector('.categories-list');
 
   const categories = await fetchCategories();
 
-  const itemBtn = categories
-    .map(category => {
-      return `<li class="categories-item">
-                <button class="category-btn"
-                  type="button">${category}
+  const markup = categories.map(({ name }) => `
+              <li class="categories-item">
+                <button class="category-btn" type="button">
+                  ${name}
                 </button>
-              </li>`;
-    })
-    .join('');
-
-  categoryListEl.innerHTML += itemBtn;
+              </li>`).join('');
+  
+  categoryListEl.insertAdjacentHTML('beforeend', markup);
 }
-
 createCategoryButtons();
-
-// const categoryBtns = document.querySelectorAll('.category-btn');
-
-// categoryBtns.forEach(btn => {
-//   btn.addEventListener('click', async event => {
-//     const category = event.target.textContent.trim();
-
-//     galleryEl.innerHTML = '';
-
-//     const { recipes } = await fetchAllRecipes(category);
-
-//     recipes.forEach(recipe => {
-//       const card = `<div class="card-recipe" style="background-image: url(${recipe.preview})">
-//                     <svg class="card-heart" src="./images/heart-card.svg" width="22" height="22"></svg>
-//                     <h3 class="card-title">${recipe.title}</h3>
-//                     <p class="card-description">${recipe.description}</p>
-//                     <button type="button" class="card-button">Дивитися рецепт</button>
-//                   </div>`;
-//       galleryEl.innerHTML += card;
-//     });
-//   });
-// });
