@@ -67,4 +67,16 @@ const fetchCategories = async () => {
   }
 };
 
-export { fetchEvents, fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories };
+const fetchRecipesById = async (id) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/recipes/${id}`
+    );
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export { fetchEvents, fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById };
