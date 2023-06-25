@@ -12,9 +12,9 @@
     />
 
     
-    <script type="module" crossorigin src="/tasty-treats/assets/index-bb15fd17.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/main-951e1f7e.js">
-    <link rel="stylesheet" href="/tasty-treats/assets/main-e9802d88.css">
+    <script type="module" crossorigin src="/tasty-treats/assets/index-4ac7dcae.js"></script>
+    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/main-ef633a6c.js">
+    <link rel="stylesheet" href="/tasty-treats/assets/main-d4f0e3d6.css">
   </head>
   <body>
     <header class="header">
@@ -59,18 +59,30 @@
 </section>
 
       
-      <form class="search-form" id="search-form">
-  <label class="label">Search</label>
-  <input class="input-search" type="text" placeholder="Enter Text" />
+      <form class="search-form container" id="search-form">
+  <ul class="search-list">
+    <li class="search-item first">
+      <label class="label">Search</label>
+      <div class="input-container">
+        <span class="search-icon"></span>
+        <input class="input-search" type="text" placeholder="Enter Text" />
+      </div>
+    </li>
 
-  <label class="label">Time</label>
-  <select class="select-time"></select>
+    <li class="search-item second">
+      <label class="label">Time</label>
+      <select class="select-time"></select>
+    </li>
+    <li class="search-item third">
+      <label class="label">Area</label>
+      <select class="select-area"></select>
+    </li>
 
-  <label class="label">Area</label>
-  <select class="select-area"></select>
-
-  <label class="label">Ingredients</label>
-  <select class="select-ingredients"></select>
+    <li class="search-item fourth">
+      <label class="label">Ingredients</label>
+      <select class="select-ingredients"></select>
+    </li>
+  </ul>
 </form>
 
       <div class="gallery"></div>
