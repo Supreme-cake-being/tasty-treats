@@ -1,0 +1,87 @@
+@import '../../../node_modules/swiper/swiper-bundle.css';
+
+.hero-container {
+  display: flex;
+}
+
+.content-container {
+  width: 446px;
+  height: auto;
+}
+
+.hero-title {
+  margin-bottom: 16px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+.hero-caption {
+  font-size: 16px;
+  line-height: 24px;
+  color: #050505;
+  margin-bottom: 32px;
+}
+
+.highlighted {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 43px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #9bb537;
+}
+
+.swiper {
+  width: 871px;
+  height: 468px;
+}
+
+.swiper-slide {
+  position: absolute;
+}
+.slide-container {
+  position: relative;
+  display: flex;
+  width: fit-content;
+}
+
+.cook_image {
+  width: 137px;
+  height: 442px;
+  object-fit: cover;
+  object-position: -110px;
+  border-radius: 15px;
+}
+
+.recipe_image {
+  width: 351px;
+  height: 442px;
+  border-radius: 15px;
+}
+
+.recipe_closeup {
+  width: 351px;
+  height: 442px;
+  border-radius: 15px;
+}
+
+/* .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  max-width: 390px;
+} */
+
+.order-btn {
+  display: inline-flex;
+  padding: 14px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 15px;
+  border: 1px solid #9bb537;
+}
