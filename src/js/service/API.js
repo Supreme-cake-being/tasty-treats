@@ -1,103 +1,56 @@
 import axios from 'axios';
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
-export const fetchAllRecipes = async () => {
+const fetchRecipes = async () => {
   try {
-    const mainResponse = await fetch(
-      'https://tasty-treats-backend.p.goit.global/api/recipes'
+    const response = await axios.get(
+      `${BASE_URL}/recipes`
     );
-    const { totalPages } = await mainResponse.json();
-
-    const recipesPromises = Array.from(
-      { length: totalPages },
-      async (_, index) => {
-        const response = await fetchRecipes(index + 1);
-        return response.results;
-      }
-    );
-    const recipesResults = await Promise.all(recipesPromises);
-
-    const recipes = recipesResults.flat();
-
-    const { times, areas, titles, previews, categories, descriptions } =
-      recipes.reduce(
-        (acc, recipe) => {
-          const { time, area, title, preview, category, description } = recipe;
-          acc.times.push(time);
-          acc.areas.push(area);
-          acc.titles.push(title);
-          acc.previews.push(preview);
-          acc.categories.push(category);
-          acc.descriptions.push(description);
-          return acc;
-        },
-        {
-          times: [],
-          areas: [],
-          titles: [],
-          previews: [],
-          categories: [],
-          descriptions: [],
-        }
-      );
-
-    return {
-      recipes,
-      times,
-      areas,
-      titles,
-      previews,
-      categories,
-      descriptions,
-    };
-  } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
-    return null;
-  }
-};
-
-async function fetchRecipes(page) {
-  try {
-    const response = await fetch(
-      `https://tasty-treats-backend.p.goit.global/api/recipes?page=${page}`
-    );
-    const data = await response.json();
+    const { data } = response;
     return data;
   } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
-    return null;
+    console.log(error.message);
   }
 }
 
-export const fetchIngredient = async () => {
+const fetchRecipesByCategory = async (categoryName) => {
   try {
-    const response = await fetch(
-      'https://tasty-treats-backend.p.goit.global/api/ingredients'
+    const response = await axios.get(
+      `${BASE_URL}/recipes`, {
+        params: {
+          category: categoryName,
+        }
+      }
     );
-    const data = await response.json();
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
-    const ingredients = data.map(ingredient => ingredient.name);
-
+const fetchIngredient = async () => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/ingredients`
+    );
+    const ingredients = response.map(ingredient => ingredient.name);
+    console.log(ingredients);
     return ingredients;
   } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
-    return [];
+    console.log(error.message);
   }
 };
 
-export const fetchCategories = async () => {
+const fetchCategories = async () => {
   try {
-    const response = await fetch(
-      'https://tasty-treats-backend.p.goit.global/api/categories'
+    const response = await axios.get(
+      `${BASE_URL}/categories`
     );
-    const data = await response.json();
-
-    const categories = data.map(category => category.name);
-
-    return categories;
+    const { data } = response;
+    return data;
   } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
-    return [];
+    console.log(error.message);
   }
 };
 
@@ -112,3 +65,6 @@ export async function fetchEvents() {
     console.log(error.message);
   }
 }
+
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories };
+
