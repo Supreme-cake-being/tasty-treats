@@ -1,0 +1,30 @@
+.layout-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: baseline; */
+}
+
+.categories-section,
+.search-container,
+.gallery {
+  flex-basis: 100%;
+}
+
+@media (min-width: 768px) {
+  /* .layout-container {
+    gap: 16px;
+  } */
+  .categories-section {
+    flex-basis: 30%;
+  }
+
+  .search-container,
+  .gallery {
+    flex-basis: 60%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .layout-container {
+    gap: 64px;
+  }
+}
