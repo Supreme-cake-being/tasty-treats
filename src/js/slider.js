@@ -1,93 +1,71 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
 import { fetchEvents } from './service/API';
 
-// Swiper.use({ Navigation, Pagination });
-
-const swiper = new Swiper('.swiper', {
-  slidesPerView: 1.25,
-  initialSlide: 1,
-  centeredSlides: true,
-  // loop: true,
-  // lazyLoading: true,
-  // keyboard: {
-  //   enabled: true,
-  // },
-  modules: [Navigation, Pagination],
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  spaceBetween: 16,
-
-  // If we need pagination
-  pagination: {
-    el: '.swiper .swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-    bulletActiveClass: true,
-  },
-});
-
-// const swiperEl = document.querySelector('.swiper').swiper;
-
-// Now you can use all slider methods like
-// swiper.slideNext();
-
 const swiperEl = document.querySelector('.swiper');
 
-let array = fetchEvents()
-  .then(result => {
-    console.log(result);
-    // let cooksImgArray = [];
-    // let eventNameArray = [];
-    let eventInfo;
-    for (let i = 0; i < result.length; i++) {
-      eventInfo = result[i];
-      const {
-        cook: { imgUrl },
-        topic: { name, area, previewUrl },
-      } = eventInfo;
+fetchEvents().then(events => {
+  console.log(events);
+  // let cooksImgArray = [];
+  // let eventNameArray = [];
+  for (let i = 0; i < events.length; i++) {
+    // event = events[i];
+    // console.log(event);
+    // return eventInfo;
+    const {
+      cook: { imgUrl },
+      topic: { name, area, previewUrl },
+    } = events[i];
+    console.log(imgUrl, name, area, previewUrl);
 
-      console.log(imgUrl, name, area, previewUrl);
-    }
-
-    // cooksImgArray.push(result[i].cook.imgUrl);
-    // eventNameArray.push(result[i].topic.name);
-
-    // console.log(cooksImgArray);
-    // console.log(eventNameArray);
-    // }).catch(error => console.log(error.message));
-
-    function createSlideMarkup(eventInfo) {
-      return eventInfo.map((imgUrl, name, area, previewUrl) => {
-        return `<div class="swiper-wrapper">
-        <div class="swiper-slide swiper-slide_first">
+    const slideMarkup = `<div class="swiper-slide">
+    <div class="slide-container">
           <img
             src='${imgUrl}'
             alt="Cook name"
             class="cook_image"
           />
-        </div>
-
-        <div class="swiper-slide swiper-slide_second">
+   
+        <div class="recipe_image">
           <img
-            src="../img/pizza picture.png"
+            src="${previewUrl}"
             alt="Recipe"
             class="recipe_image"
           />
         <h2>${name}</h2>
         <p>${area}</p>
         </div>
+      
+          <img src="../img/card.png" alt="Recipe" class="recipe_closeup" />
+          </div>
+      
+    
+    </div>`;
 
-        <div class="swiper-slide swiper-slide_third">
-          <img src="${previewUrl}" alt="Recipe" class="recipe_closeup" />
-        </div>
-      </div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-pagination-bullet"></div>
-    </div>`}).join('').catch(error => console.log(error.message));
+    let swiperWrapEl = document.querySelector('.swiper-wrapper');
+    swiperWrapEl.insertAdjacentHTML('afterbegin', slideMarkup);
+  }
 
-const slideMarkup = createGalleryMarkup(eventInfo);
+  const swiper = new Swiper('.swiper', {
+    slidesPerView: 1,
+    centeredSlides: true,
+    // loop: true,
+    // lazyLoading: true,
+    // keyboard: {
+    //   enabled: true,
+    // },
+    modules: [Navigation, Pagination],
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 16,
 
-      galleryWrapperRef.insertAdjacentHTML('beforeend', slideMarkup);
+    // If we need pagination
+    pagination: {
+      el: '.swiper .swiper-pagination',
+      type: 'bullets',
+      clickable: true,
+      bulletActiveClass: true,
+    },
+  });
+});
