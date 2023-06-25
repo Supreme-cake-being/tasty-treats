@@ -59,3 +59,16 @@
 //     galleryEl.innerHTML = '';
 //   }
 // });
+
+
+// const searchForm = document.querySelector('.search-form');
+// const gallery = document.querySelector('.gallery');
+
+// searchForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+// });
+
+
+// searchForm.addEventListener('input', (e) => {
+
+// });
