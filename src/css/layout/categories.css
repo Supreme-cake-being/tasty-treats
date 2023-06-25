@@ -31,7 +31,7 @@
   overflow-x: hidden;
 }
 
-.categories-list-btn {
+.category-btn {
   font-size: 14px;
   font-weight: 500;
   color: var(--light-theme-categories-text);
@@ -39,8 +39,8 @@
   transition: var(--animation);
 }
 
-.categories-list-btn:focus,
-.categories-list-btn:hover {
+.category-btn:focus,
+.category-btn:hover {
   color: var(--accent-color);
 }
 
@@ -64,7 +64,7 @@
     height: 416px;
   }
 
-  .categories-list-btn {
+  .category-btn {
     font-size: 16px;
   }
 
