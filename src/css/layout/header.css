@@ -15,11 +15,13 @@
 .header {
     padding: 27.5px 4px;
 }
+
 @media screen and (min-width: 768px) {
     .header {
         padding: 32px 8px;
     }
 }
+
 @media screen and (min-width: 1280px) {
     .header {
         padding: 40px 76px;
@@ -37,6 +39,7 @@
     align-items: center;
     gap: 14px;
 }
+
 @media screen and (min-width: 1280px) {
     .header_icons {
         gap: 18px;
@@ -46,6 +49,7 @@
 .header_list {
     display: none;
 }
+
 @media screen and (min-width: 768px) {
     .header_list {
         gap: 16px;
@@ -61,6 +65,7 @@
     letter-spacing: 0.03em;
     color: var(--light-theme-text);
 }
+
 @media screen and (min-width: 768px) {
     .header_logo {
         font-weight: 600;
@@ -70,6 +75,7 @@
         color: var(--light-theme-text);
     }
 }
+
 .header_logo-green {
     color: #9BB537;
 }
@@ -93,6 +99,7 @@
     background: none;
     padding: 0;
 }
+
 @media screen and (min-width: 768px) {
     .header_burger-btn {
         display: none;
@@ -102,31 +109,40 @@
 .switch-btn {
     display: none;
 }
+
 @media screen and (min-width: 768px) {
-.switch-btn {
-    display: inline-block;
-    width: 46px;
-    height: 20px;
-    border-radius: 19px; /* радіус округлення */
-    background: #CECDCD; /* колір фону */
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    transition-duration: 300ms;
-    /* анімація */
+    .switch-btn {
+        display: inline-block;
+        width: 46px;
+        height: 20px;
+        border-radius: 19px;
+        /* радіус округлення */
+        background: #CECDCD;
+        /* колір фону */
+        z-index: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        transition-duration: 300ms;
+        /* анімація */
+    }
 }
-}
+
 .switch-btn::after {
     content: "";
-    height: 20px; /* висота кнопки */
-    width: 20px; /* ширина кнопки */
+    height: 20px;
+    /* висота кнопки */
+    width: 20px;
+    /* ширина кнопки */
     border-radius: 17px;
-    background: #F8F8F8; /* колір кнопки */
-    top: 0px; /* розташування кнопки по вертикалі відповідно до основи */
-    left: 26px; /* розташування кнопки по горизонталі відповідно до основи */
+    background: #F8F8F8;
+    /* колір кнопки */
+    top: 0px;
+    /* розташування кнопки по вертикалі відповідно до основи */
+    left: 26px;
+    /* розташування кнопки по горизонталі відповідно до основи */
     transition-duration: 300ms;
     /* анімація */
     position: absolute;
