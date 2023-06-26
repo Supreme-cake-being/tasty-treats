@@ -23,7 +23,7 @@ import{b as Pe,c as ue,f as pe,d as ke,a as Ie}from"./API-0f64e5f4.js";function 
     </div>`;document.querySelector(".swiper-wrapper").insertAdjacentHTML("afterbegin",l)}new G(".swiper",{slidesPerView:1,centeredSlides:!0,modules:[Ut,Kt],navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},spaceBetween:16,pagination:{el:".swiper .swiper-pagination",type:"bullets",clickable:!0,bulletActiveClass:!0}})});const Jt=async()=>{document.querySelectorAll(".favorites-btn").forEach(t=>{t.addEventListener("click",async()=>{const i=t.getAttribute("data-id"),s=await ue(i),{_id:r,preview:n,title:l,description:a,rating:o}=s,c=JSON.parse(localStorage.getItem("favorites"))||[];if(!c.find(u=>u._id===s._id)){localStorage.setItem("favorites",JSON.stringify([c,{_id:r,preview:n,title:l,description:a,rating:o}].flat()));return}const S=c.filter(u=>u._id!==s._id);localStorage.setItem("favorites",JSON.stringify(S))})})},Qt=document.querySelector(".gallery"),ie=e=>{const t=e.map(i=>`<div class="card-recipe" style="background-image: url(${i.preview})">
             <button class="favorites-btn" data-id="${i._id}" type="button">
                 <svg class="icon-heart" width="22" height="22">
-                    <use href="../img/icons.svg#heart"></use>
+                    <use href="./img/icons.svg#heart"></use>
                 </svg>
             </button>
             <h3 class="card-title">${i.title}</h3>
