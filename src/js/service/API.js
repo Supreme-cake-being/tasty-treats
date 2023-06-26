@@ -1,18 +1,5 @@
-import axios from "axios";
-
+import axios from 'axios';
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
-
-const fetchEvents = async () => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/events`
-    );
-    const { data } = response;
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
 
 const fetchRecipes = async () => {
   try {
@@ -67,6 +54,18 @@ const fetchCategories = async () => {
   }
 };
 
+export async function fetchEvents() {
+  try {
+    let response = await axios.get(`${BASE_URL}/events`);
+    let result = await response.data;
+    console.log(result);
+
+    return result;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 const fetchRecipesById = async (id) => {
   try {
     const response = await axios.get(
@@ -79,4 +78,4 @@ const fetchRecipesById = async (id) => {
   }
 };
 
-export { fetchEvents, fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById };
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById };

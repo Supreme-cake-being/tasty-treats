@@ -1,9 +1,13 @@
+import axios from 'axios';
 import Pagination from 'tui-pagination';
 
-const container = document.querySelector('#tui-pagination-container');
-// Eкземпляр пагінації із  опціями
-const pagination = new Pagination(container, {
-  totalItems: 10,
+const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
+
+const imageContainer = document.querySelector('#image-container');
+const paginationContainer = document.querySelector('#tui-pagination-container');
+
+const pagination = new Pagination(paginationContainer, {
+  totalItems: 1,
   itemsPerPage: 9,
   visiblePages: 10,
   page: 1,
@@ -16,11 +20,11 @@ const pagination = new Pagination(container, {
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
@@ -28,44 +32,61 @@ const pagination = new Pagination(container, {
       '</a>',
   },
 });
-// Функція оновлення даних при зміні сторінки
+
+const prevButton = document.querySelector('.tui-ico-prev');
+const nextButton = document.querySelector('.tui-ico-next');
+prevButton.textContent = '«';
+nextButton.textContent = '»';
+
+const moveButtons = document.querySelectorAll('.tui-page-btn.tui-move');
+moveButtons.forEach(button => {
+  if (button.textContent === 'prev') {
+    button.textContent = '<';
+  } else if (button.textContent === 'next') {
+    button.textContent = '>';
+  }
+});
+
+paginationContainer.classList.remove('is-hidden');
+
 async function updateData(pageNum) {
   const allRecipes = await fetchAllRecipes();
   if (allRecipes) {
     pagination.setTotalItems(allRecipes.length);
 
-    // початковий і кінцевий індекси для елементів, що відображаються на сторінці
     const itemsPerPage = pagination.options.itemsPerPage;
     const startIndex = (pageNum - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const pageData = allRecipes.slice(startIndex, endIndex);
 
-    //Відображаємо дані на сторінці
     displayData(pageData);
+
+    if (allRecipes.length > itemsPerPage) {
+      container.classList.remove('is-hidden');
+    } else {
+      container.classList.add('is-hidden');
+    }
+  } else {
+    container.classList.add('is-hidden');
   }
 }
 
-// Метод reset для пагінації
 Pagination.prototype.reset = function (totalItems) {
   this.setTotalItems(totalItems);
   this.reset();
   this.movePageTo(1);
 };
 
-//Функція для отримання поточної сторінки пагінації
 function getCurrentPage() {
   return pagination.getCurrentPage();
 }
 
 updateData(1);
 
-// Функція для отримання всіх рецептів із стороннього API
 async function fetchAllRecipes() {
   try {
-    const response = await fetch(
-      'https://tasty-treats-backend.p.goit.global/api/recipes'
-    );
-    const data = await response.json();
+    const response = await axios.get(`${BASE_URL}/recipes`);
+    const data = response.data;
     const totalPages = data.totalPages;
 
     const promises = [];
@@ -78,21 +99,29 @@ async function fetchAllRecipes() {
 
     return allRecipes;
   } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
+    console.error('Error while fetching recipes:', error);
     return null;
   }
 }
 
-//Функція для отримання рецептів за заданим номером сторінки
 async function fetchRecipes(page) {
   try {
-    const response = await fetch(
-      `https://tasty-treats-backend.p.goit.global/api/recipes?page=${page}`
-    );
-    const data = await response.json();
+    const response = await axios.get(`${BASE_URL}/recipes?page=${page}`);
+    const data = response.data;
     return data;
   } catch (error) {
-    console.error('Помилка під час виконання запиту:', error);
+    console.error('Error while fetching recipes:', error);
     return null;
+  }
+}
+
+function displayData(data) {
+  imageContainer.innerHTML = '';
+
+  for (let i = 0; i < data.length; i++) {
+    const recipe = data[i];
+    const imageElement = document.createElement('img');
+    imageElement.src = recipe.imageUrl;
+    imageContainer.appendChild(imageElement);
   }
 }

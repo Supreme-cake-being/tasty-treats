@@ -1,9 +1,13 @@
 :root {
   --light-theme-categories-text: rgba(5, 5, 5, 0.3);
 }
+
 .categories-container {
   margin-top: 80px;
   margin-bottom: 40px;
+
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .categories-btn {
@@ -31,7 +35,7 @@
   overflow-x: hidden;
 }
 
-.categories-list-btn {
+.category-btn {
   font-size: 14px;
   font-weight: 500;
   color: var(--light-theme-categories-text);
@@ -39,8 +43,8 @@
   transition: var(--animation);
 }
 
-.categories-list-btn:focus,
-.categories-list-btn:hover {
+.category-btn:focus,
+.category-btn:hover {
   color: var(--accent-color);
 }
 
@@ -52,7 +56,7 @@
   .categories-container {
     margin-top: 106px;
     margin-bottom: 64px;
-    margin-right: 32px;
+    padding-right: 0px;
   }
 
   .categories-btn {
@@ -64,7 +68,7 @@
     height: 416px;
   }
 
-  .categories-list-btn {
+  .category-btn {
     font-size: 16px;
   }
 
@@ -76,7 +80,6 @@
 @media screen and (min-width: 1280px) {
   .categories-container {
     margin-top: 126px;
-    margin-right: 64px;
   }
 
   .categories-list {
