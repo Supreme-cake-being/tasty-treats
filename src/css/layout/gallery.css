@@ -11,10 +11,12 @@
   color: #f8f8f8;
 }
 
-.card-heart {
-  margin-top: 16px;
-  margin-left: 212px;
-  /* stroke: #f8f8f8; */
+.favorites-btn {
+  background-color: transparent;
+}
+
+.icon-heart {
+  stroke: #f8f8f8;
 }
 
 .card-title {
