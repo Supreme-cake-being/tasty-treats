@@ -54,7 +54,19 @@ const fetchCategories = async () => {
   }
 };
 
-export async function fetchEvents() {
+const fetchRecipesById = async (id) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/recipes/${id}`
+    );
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const fetchEvents = async () => {
   try {
     let response = await axios.get(`${BASE_URL}/events`);
     let result = await response.data;
@@ -66,5 +78,4 @@ export async function fetchEvents() {
   }
 }
 
-export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories };
-
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById, fetchEvents };

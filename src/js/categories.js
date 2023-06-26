@@ -13,7 +13,7 @@ allCategoriesBtn.addEventListener('click', async () => {
     const recipes = await fetchRecipes();
     const { results } = recipes;
 
-  createMarkup(results);
+    createMarkup(results);
 })
 
 categories.addEventListener('click', async (e) => {
