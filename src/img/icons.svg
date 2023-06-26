@@ -1,5 +1,8 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
+<symbol id="search" viewBox="0 0 32 32">
+<path d="M28.948 27.054l-4.948-4.907c1.644-2.036 2.639-4.656 2.639-7.508 0-6.627-5.373-12-12-12s-12 5.373-12 12c0 6.627 5.373 12 12 12 2.852 0 5.472-0.995 7.531-2.657l-0.023 0.018 4.907 4.907c0.242 0.244 0.577 0.394 0.947 0.394s0.705-0.151 0.947-0.394l0-0c0.232-0.24 0.374-0.566 0.374-0.926s-0.143-0.687-0.375-0.927l0 0zM14.667 24c-5.155 0-9.333-4.179-9.333-9.333s4.179-9.333 9.333-9.333v0c5.155 0 9.333 4.179 9.333 9.333s-4.179 9.333-9.333 9.333v0z"></path>
+</symbol>
 <symbol id="menu" viewBox="0 0 31 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.9394" d="M27.151 13.414h-23.273M27.151 8.242h-23.273M27.151 18.586h-23.273M27.151 23.758h-23.273"></path>
 </symbol>
