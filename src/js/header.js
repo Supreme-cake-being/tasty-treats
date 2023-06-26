@@ -13,12 +13,17 @@
 
   function toggleMenu() {
     refs.menu.classList.toggle('is-hidden');
-    refs.body.classList.toggle('no-scroll');
-    refs.body.classList.toggle('no-scroll');
   }
 
-  function removeMenu() {
+  function removeMenu() { 
     refs.menu.classList.add('is-hidden');
   }
 })();
 
+
+const headerLinks = document.querySelectorAll('.header_link');
+headerLinks.forEach(link => {
+  if (link.href === window.location.href) {
+    link.classList.add('active');
+  }
+});

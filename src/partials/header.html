@@ -9,10 +9,16 @@
     <a href="./index.html" class="header_logo"><span class="header_logo-green">tasty</span>treats.</a>
     <div class="header_icons">
       <a href="tel:+380730000000">
-        <img src="./img/shopping-cart-03.svg" width="24px" height="24px" class="header_icon">
+        <svg width="24px" height="24px" class="header_icon">
+          <use href="./img/icons.svg#cart"></use>
+        </svg>
+        <!-- <img src="./img/shopping-cart-03.svg" width="24px" height="24px" class="header_icon"> -->
       </a>
       <button type="button" class="header_burger-btn menu-open">
-        <img src="./img/burger.svg" class="header_burger-icon" width="32" height="32">
+          <svg width="32px" height="32px">
+            <use href="./img/icons.svg#burger"></use>
+          </svg>
+        <!-- <img src="./img/burger.svg" class="header_burger-icon" width="32" height="32"> -->
       </button>
       <div class="switch-btn switch-on"></div>
 
@@ -21,11 +27,14 @@
   <div class="menu visually-hidden">
     <div class="container">
       <button class="menu-close" type="button">
-        <img src="./img/menu-close.svg" width="20" height="20">
+        <svg width="20" height="20" class="menu-close_icon">
+          <use href="./img/icons.svg#x"></use>
+        </svg>
+        <!-- <img src="./img/menu-close.svg" width="20" height="20"> -->
       </button>
       <ul class="menu_list">
         <li class="menu_item"><a href="./index.html">Home</a></li>
-        <li class="menu-item"><a href="./favorites.html">Favorites</a></li>
+        <li class="menu_item"><a href="./favorites.html">Favorites</a></li>
       </ul>
       <div class="switch-btn switch-on"></div>
     </div>
