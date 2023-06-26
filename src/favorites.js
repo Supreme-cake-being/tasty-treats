@@ -44,7 +44,7 @@ function renderFavotites(favorites) {
 function renderPage() {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (!favorites) {
-        refs.noData.style.display = 'flex';   
+        refs.noData.style.display = 'flex';
     } else (
         fetchCategories().then((categories) => {
             renderFavotites(favorites);
