@@ -78,5 +78,4 @@ const fetchEvents = async () => {
   }
 }
 
-export { fetchEvents, fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById };
-
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById, fetchEvents };
