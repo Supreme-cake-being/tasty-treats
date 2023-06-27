@@ -7,7 +7,7 @@ export const createMarkup = (array) => {
         `<div class="card-recipe" style="background-image: url(${element.preview})">
             <button class="favorites-btn" data-id="${element._id}" type="button">
                 <svg class="icon-heart" width="22" height="22">
-                    <use href="../img/icons.svg#heart"></use>
+                    <use href="./img/icons.svg#heart"></use>
                 </svg>
             </button>
             <h3 class="card-title">${element.title}</h3>
