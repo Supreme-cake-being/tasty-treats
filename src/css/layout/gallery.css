@@ -1,57 +1,132 @@
 .gallery {
+  list-style: none;
+
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 24px;
 }
 
+/* @media screen and (min-width: 768px) {
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    row-gap: 16px;
+
+    margin-top: 32px;
+  }
+} */
+
 .card-recipe {
-  width: 250px;
-  height: 287px;
-  margin: 16px 8px;
+  position: relative;
+
+  width: 335px;
+
+  padding: 0, 16px, 16px, 16px;
+
   border-radius: 15px;
-  color: #f8f8f8;
+  background-image: linear-gradient(
+    0.94deg,
+    rgba(5, 5, 5, 0.6) 4.82%,
+    rgba(5, 5, 5, 0) 108.72%
+  );
+}
+
+.card-img {
+  width: 100%;
+
+  border-radius: 15px;
+  object-fit: cover;
 }
 
 .favorites-btn {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
   background-color: transparent;
 }
 
 .icon-heart {
   stroke: #f8f8f8;
+  opacity: 0.5;
+  fill: transparent;
+
+  transition: opacity 250ms var(--animation), fill 250ms var(--animation);
+}
+
+.icon-heart:hover {
+  opacity: 1;
+}
+
+.icon-heart.is-favorite {
+  opacity: 1;
+  fill: #f8f8f8;
+}
+
+.card-info {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+
+  color: var(--cards-text);
 }
 
 .card-title {
-  margin-top: 128px;
-  margin-left: 16px;
-  width: 173px;
-  height: 18px;
+  margin-bottom: 8px;
+
   font-weight: 600;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 1.28;
   text-transform: uppercase;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .card-description {
-  margin-top: 8px;
-  margin-left: 16px;
-  width: 218px;
   height: 32px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  overflow: hidden;
+  width: 303px;
+
+  margin-bottom: 16px;
+
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* white-space: nowrap; */
+
+  font-size: 12px;
+  line-height: 1.33;
 }
 
 .card-button {
-  width: 93px;
-  height: 31px;
+  font-size: 12px;
+  font-weight: 500;
+
+  margin-left: auto;
+  padding: 8px 14px;
+
+  color: var(--cards-text);
+  background-color: var(--accent-color);
+
   border-radius: 8px;
-  color: #f8f8f8;
-  background: #9bb537;
+}
+
+.card-additional-info {
+  display: flex;
+  align-items: center;
+}
+
+.card-additional-info p {
+  margin-right: 4px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+}
+
+.card-star {
+  fill: #f8f8f81a;
 }
