@@ -1,5 +1,6 @@
 :root {
   /* text colors */
+  --cards-text: #f8f8f8;
   --light-theme-text: #050505;
   --light-theme-btn-text: rgba(5, 5, 5, 0.5);
 
