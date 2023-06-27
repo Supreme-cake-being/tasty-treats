@@ -125,6 +125,7 @@
 .slide-container {
   position: relative;
   display: flex;
+  gap: 16px;
   /* width: fit-content; */
   width: max-content;
 }
@@ -162,22 +163,32 @@
 }
 
 .recipe_image img {
-  width: 304px;
-  height: 271px;
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 67px;
   margin-bottom: 20px;
-  background-image: url(../../img/Ellipse\ 7268.png);
   background-size: 304px;
   border: rgba(155, 181, 55, 0.6000000238418579);
+
+  @media (min-width: 768px) {
+    width: 262px;
+    height: 262px;
+  }
 }
 .recipe-name {
   margin-bottom: 8px;
   color: rgba(255, 255, 255, 0.6);
 
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 18px;
   text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .info-container {
