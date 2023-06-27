@@ -1,0 +1,71 @@
+
+.popular-recipes-title {
+    margin: 0;
+    padding: 0;
+  
+    color: #050505;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 600;
+    line-height: 1.67;
+  
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  
+  }
+  
+  .popular-recipes-list {
+    margin: 0;
+    padding: 0;
+  
+    width: 175px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .recipe-card {
+    display: flex;
+  }
+  
+  .recipe-image {
+    display: block;
+    width: 48px;
+    height:48px;
+    object-fit: cover;
+    margin-right: 8px;
+    border-radius: 8px;
+  } 
+  
+  .recipe-info {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .recipe-title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+  
+    color: #050505;
+  
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.28;
+    
+    text-transform: uppercase;
+  
+  }
+  
+  .recipe-description {
+    margin: 0;
+    padding: 0;
+  
+    color: rgba(5, 5, 5, 0.80);
+    
+    font-family: Inter;
+    font-size: 10px;
+    line-height: 1.4;
+  }
