@@ -1,3 +1,71 @@
+import {
+  fetchRecipes,
+  fetchArea,
+  fetchIngredient,
+  fetchRecipesByFilters,
+} from './service/API';
+import { createMarkup } from './create-markup';
+import debounce from 'lodash.debounce';
+
+const gallery = document.querySelector('.gallery');
+const searchName = document.querySelector('.input-search');
+const searchIngredients = document.querySelector('.select-ingredients');
+const searchArea = document.querySelector('.select-area');
+const searchCategory = document.querySelector('.categories-list');
+const searchTime = document.querySelector('.select-time');
+
+(async function addSelectAreas() {
+  try {
+    const areas = await fetchArea();
+    areas.forEach(area => {
+      const option = document.createElement('option');
+      option.text = area;
+      searchArea.appendChild(option);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+})();
+
+(async function addSelectIngredients() {
+  try {
+    const ingredients = await fetchIngredient();
+    const { ingredientId, ingredientName } = ingredients;
+
+  for (let i = 0; i < ingredientId.length; i++) {
+    const optionElement = document.createElement('option');
+    optionElement.value = ingredientId[i];
+    optionElement.text = ingredientName[i];
+    searchIngredients.appendChild(optionElement);
+  }
+  } catch (error) {
+    console.log(error.message);
+  }
+})();
+
+searchIngredients.addEventListener('change', createFilteredMarkup());
+
+async function createFilteredMarkup() {
+  try {
+    const filteredRecipes = await fetchRecipesByFilters(
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value,
+    );
+    const { results } = filteredRecipes;
+    gallery.innerHTML = '';
+    console.log(results);
+    console.log(searchName.value.trim());
+    console.log(searchIngredients.value);
+    console.log(searchArea.value);
+    console.log(searchTime.value);
+    createMarkup(results);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // import debounce from 'lodash.debounce';
 
 // const inputEl = document.querySelector('.input');
@@ -60,14 +128,12 @@
 //   }
 // });
 
-
 // const searchForm = document.querySelector('.search-form');
 // const gallery = document.querySelector('.gallery');
 
 // searchForm.addEventListener('submit', (e) => {
 //     e.preventDefault();
 // });
-
 
 // searchForm.addEventListener('input', (e) => {
 
