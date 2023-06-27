@@ -1,6 +1,6 @@
 import { addToFavorites } from './add-favorites';
 
-const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery-list');
 
 export const createMarkup = (array) => {
     const markup = array.map((element) => 
