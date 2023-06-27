@@ -17,11 +17,8 @@ const searchTime = document.querySelector('.select-time');
 (async function addSelectAreas() {
   try {
     const areas = await fetchArea();
-    areas.forEach(area => {
-      const option = document.createElement('option');
-      option.text = area;
-      searchArea.appendChild(option);
-    });
+    const markup = areas.map(area => `<option>${area}</option>`).join('');
+    searchArea.insertAdjacentHTML('beforeend', markup);
   } catch (error) {
     console.log(error.message);
   }
@@ -31,13 +28,12 @@ const searchTime = document.querySelector('.select-time');
   try {
     const ingredients = await fetchIngredient();
     const { ingredientId, ingredientName } = ingredients;
-
-  for (let i = 0; i < ingredientId.length; i++) {
-    const optionElement = document.createElement('option');
-    optionElement.value = ingredientId[i];
-    optionElement.text = ingredientName[i];
-    searchIngredients.appendChild(optionElement);
-  }
+    for (let i = 0; i < ingredientId.length; i++) {
+      const optionElement = document.createElement('option');
+      optionElement.value = ingredientId[i];
+      optionElement.text = ingredientName[i];
+      searchIngredients.appendChild(optionElement);
+    }
   } catch (error) {
     console.log(error.message);
   }
@@ -51,7 +47,7 @@ async function createFilteredMarkup() {
       searchName.value.trim(),
       searchIngredients.value,
       searchArea.value,
-      searchTime.value,
+      searchTime.value
     );
     const { results } = filteredRecipes;
     gallery.innerHTML = '';
