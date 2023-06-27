@@ -17,7 +17,7 @@ fetchEvents().then(events => {
     } = events[i];
     console.log(imgUrl, name, area, previewUrl);
 
-    const slideMarkup = `<div class="swiper-slide">
+    const slideMarkup = `<div class="swiper-slide" pagination="true">
     <div class="slide-container">
           <img
             src='${imgUrl}'
@@ -29,13 +29,18 @@ fetchEvents().then(events => {
           <img
             src="${previewUrl}"
             alt="Recipe"
-            class="recipe_image"
           />
-        <h2>${name}</h2>
-        <p>${area}</p>
+    
+        <div class="info-container">
+        <h2 class="recipe-name">${name}</h2>
+        <p class="area-name">${area}</p>
         </div>
-      
-          <img src="../img/card.png" alt="Recipe" class="recipe_closeup" />
+        </div>
+        
+
+      <div>
+          <img src="${previewUrl}" alt="Recipe" class="recipe_closeup" />
+          </div>
           </div>
       
     
@@ -48,20 +53,17 @@ fetchEvents().then(events => {
   const swiper = new Swiper('.swiper', {
     slidesPerView: 1,
     centeredSlides: true,
-    // loop: true,
-    // lazyLoading: true,
-    // keyboard: {
-    //   enabled: true,
-    // },
-    modules: [Navigation, Pagination],
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+    loop: true,
+    lazyLoading: true,
     spaceBetween: 16,
+    keyboard: {
+      enabled: true,
+    },
+    modules: [Navigation, Pagination],
 
     // If we need pagination
     pagination: {
+      // enabled: true,
       el: '.swiper .swiper-pagination',
       type: 'bullets',
       clickable: true,
