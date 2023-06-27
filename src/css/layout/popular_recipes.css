@@ -1,49 +1,83 @@
+.popular-recipes {  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
 
 .popular-recipes-title {
     margin: 0;
     padding: 0;
   
     color: #050505;
-    font-size: 24px;
+    font-size: 18px;
     font-family: Inter;
     font-weight: 600;
-    line-height: 1.67;
+    line-height: 1.33;
   
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .popular-recipes-title {
+        margin-bottom: 32px;
+      }               
+}
   
-  }
-  
-  .popular-recipes-list {
+.popular-recipes-list {
+    
     margin: 0;
     padding: 0;
   
-    width: 175px;
+    width: 255px;
   
     display: flex;
     flex-direction: column;
-    gap: 16px;
-  }
+    gap: 27px;
+}
+
+@media screen and (min-width: 768px) {
+    .popular-recipes-list {
+        width: 176px;
+        gap: 16px;
+    }            
+}
   
-  .recipe-card {
+.recipe-card {
     display: flex;
-  }
+    height: 64px;
+}
+
+@media screen and (min-width: 768px) {
+    .recipe-card {
+        height: 67px;
+    }
+}
   
-  .recipe-image {
+.recipe-image {
     display: block;
-    width: 48px;
-    height:48px;
+    width: 64px;
+    height:64px;
     object-fit: cover;
-    margin-right: 8px;
+    margin-right: 16px;
     border-radius: 8px;
   } 
-  
-  .recipe-info {
+
+@media screen and (min-width: 768px) {
+    .recipe-image {
+        width: 48px;
+        height:48px;
+     
+        margin-right: 8px;
+      } 
+}
+
+.recipe-info {
     margin: 0;
     padding: 0;
   }
   
-  .recipe-title {
+.recipe-title {
     margin: 0;
     padding: 0;
     margin-bottom: 8px;
@@ -53,19 +87,25 @@
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
-    line-height: 1.28;
+    line-height: 1.29;
     
     text-transform: uppercase;
-  
   }
-  
-  .recipe-description {
+
+.recipe-description {
     margin: 0;
     padding: 0;
   
     color: rgba(5, 5, 5, 0.80);
     
     font-family: Inter;
-    font-size: 10px;
-    line-height: 1.4;
-  }
+    font-size: 12px;
+    line-height: 1.33;
+}
+
+@media screen and (min-width: 768px) {
+    .recipe-description {
+        font-size: 10px;
+        line-height: 1.4;
+      }
+}
