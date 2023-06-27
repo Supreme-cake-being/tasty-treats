@@ -1,7 +1,7 @@
 @import '../../../node_modules/swiper/swiper-bundle.css';
 
 .hero-container {
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     display: flex;
   }
 }
@@ -9,9 +9,13 @@
 .content-container {
   display: flex;
   flex-direction: column;
-  width: 335px;
+  width: 280px;
   height: auto;
   margin-bottom: 28px;
+
+  @media (min-width: 370px) {
+    width: 335px;
+  }
 
   @media (min-width: 768px) {
     width: 446px;
@@ -21,16 +25,17 @@
     margin-right: 290px;
   }
 
-  /* @media (min-width: 1200px) {
+  @media (min-width: 1200px) {
     margin-bottom: 0;
-  } */
+    margin-right: 32px;
+  }
 }
 
 .hero-title {
   margin-bottom: 14px;
   margin-left: auto;
   margin-right: auto;
-  width: 335px;
+  width: auto;
   height: auto;
   font-size: 26px;
   font-weight: 600;
@@ -38,6 +43,11 @@
   text-transform: uppercase;
   text-align: left;
   color: #050505;
+  word-break: break-word;
+
+  @media (min-width: 370px) {
+    width: 335px;
+  }
 
   @media (min-width: 768px) {
     width: 446px;
@@ -48,12 +58,14 @@
 }
 
 .hero-caption {
+  width: auto;
   font-size: 14px;
   line-height: 18px;
   color: #050505;
   margin-bottom: 28px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  word-break: break-word;
 
   @media (min-width: 768px) {
     width: 408px;
@@ -80,10 +92,16 @@
 }
 
 .swiper {
-  width: 497px;
+  width: auto;
   height: 302px;
 
+  @media (min-width: 370px) {
+    width: 497px;
+    /* margin-left: 32px; */
+  }
+
   @media (min-width: 768px) {
+    margin-left: 32px;
     width: 871px;
     height: 468px;
   }
@@ -126,12 +144,16 @@
 }
 
 .recipe_image {
-  width: 200px;
+  width: 150px;
   height: 280px;
   border-radius: 15px;
 
   background: #050505;
   background-image: url(../../img/Ellipse\ 7268.png);
+
+  @media (min-width: 370px) {
+    width: 200px;
+  }
 
   @media (min-width: 768px) {
     width: 351px;
@@ -143,9 +165,10 @@
   width: 304px;
   height: 271px;
   margin-top: 67px;
-  padding-bottom: 82px;
+  margin-bottom: 20px;
   background-image: url(../../img/Ellipse\ 7268.png);
-  background-size: contain;
+  background-size: 304px;
+  border: rgba(155, 181, 55, 0.6000000238418579);
 }
 .recipe-name {
   margin-bottom: 8px;
@@ -191,7 +214,18 @@
 
 .swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-  left: -50px;
+  @media (min-width: 370px) {
+    left: -50px;
+    /* margin-left: 32px; */
+  }
+
+  @media (min-width: 768px) {
+    left: -103px;
+  }
+
+  @media (min-width: 1200px) {
+    left: -30px;
+  }
 }
 /* .swiper-slide {
   display: flex;
@@ -205,7 +239,7 @@
   width: 111px;
   height: 37px;
   padding: 10px 20px;
-  margin-bottom: 48px;
+  margin-bottom: 37px;
   justify-content: center;
   align-items: center;
   gap: 10px;
