@@ -1,13 +1,27 @@
 .popular-recipes {  
+   
+    margin-top: 80px;
+    margin-bottom: 80px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+    .popular-recipes {  
+        margin-top: 0;
+        margin-bottom: 0;
+    }            
+    
+    .popular-recipes > .container {  
+        padding: 0;
+        padding-left: 16px;
+    }   
 }
 
 .popular-recipes-title {
     margin: 0;
     padding: 0;
-  
+
     color: #050505;
     font-size: 18px;
     font-family: Inter;
@@ -34,7 +48,7 @@
 .popular-recipes-list {
     margin: 0;
     padding: 0;
-  
+
     width: 335px;
   
     display: flex;

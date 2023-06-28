@@ -10,6 +10,7 @@ function onClick (e) {
     fetchPopularRecipes()
     .then(json => createMarkup(json))
     .then(markup => addMarkup(markup))
+    .then(data => moveElement())
 }
 
 //функция создания разметки - принимает массив, возвращает строку разметки
@@ -40,8 +41,6 @@ function addMarkup(markup){
 function truncateText(text) {
 
     const maxLength = makeMaxLength();
-
-    console.log("maxLength: " + maxLength)
 
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
@@ -74,6 +73,31 @@ function makeMaxLength() {
     const maxLength = 95;
     return maxLength;
   }
+
+
+  window.addEventListener('resize', function() {
+    moveElement();
+  });
+
+  // функция перестановки блока
+  function moveElement() {
+    let screenWidth = window.innerWidth;
+  
+    if (screenWidth > 767) { // Пороговое значение ширины экрана для перемещения элемента
+      const element = document.getElementById('popular-recipes');
+      const newParent = document.querySelector('.categories-section');
+      newParent.appendChild(element);
+    }
+
+    if (screenWidth < 768) { // Пороговое значение ширины экрана для перемещения элемента
+      const element = document.getElementById('popular-recipes');
+      const newParent = document.querySelector('main');
+      newParent.appendChild(element);
+    }
+  }
+
+  
+
 
 
   
