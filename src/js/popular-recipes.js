@@ -39,24 +39,42 @@ function addMarkup(markup){
 // функция обрезки описания
 function truncateText(text) {
 
-    const maxLength = 50;
+    const maxLength = makeMaxLength();
+
+    console.log("maxLength: " + maxLength)
 
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
     }
     return text;
-  }
+}
 
-  // функция обрезки названия
+// функция обрезки названия
 function truncateTitle(text) {
 
-    const maxLength = 15;
+    const maxLength = 10;
 
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
     }
     return text;
   }
-  
+
+// функция проверки ширины окна браузера --> возращает максимальную длину строки 
+function makeMaxLength() {
+
+    if (window.innerWidth < 768) {
+      const maxLength = 80;
+      return maxLength;
+    }
+    if (window.innerWidth < 1280) {
+      const maxLength = 60;
+      return maxLength;
+    }
+    const maxLength = 95;
+    return maxLength;
+  }
+
 
   
+
