@@ -111,7 +111,7 @@
   cursor: pointer;
 }
 
-.swiper-slide {
+/* .swiper-slide {
   opacity: 0 !important;
 }
 
@@ -121,13 +121,13 @@
 
 .swiper-slide {
   position: absolute;
-}
+} */
 .slide-container {
   position: relative;
   display: flex;
   gap: 16px;
   /* width: fit-content; */
-  width: max-content;
+  width: fit-content;
 }
 
 .cook_image {
