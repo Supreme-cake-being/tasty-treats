@@ -4,3 +4,6 @@ import './js/search';
 import './js/filters';
 import './js/gallery';
 import './js/header';
+import './js/pagination';
+import './js/modals';
+import './js/popular-recipes';
