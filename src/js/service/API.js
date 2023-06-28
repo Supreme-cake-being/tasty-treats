@@ -38,7 +38,7 @@ const fetchRecipesByFilters = async(currentPage, categoryName, keyword, ingredie
     } else if (window.innerWidth >= 768) {
       perPageLocal = 8;
     } else {
-      perPageLocal = 5;
+      perPageLocal = 6;
     }
     const response = await axios.get(
       `${BASE_URL}/recipes`, {
@@ -53,7 +53,6 @@ const fetchRecipesByFilters = async(currentPage, categoryName, keyword, ingredie
         }
       }
     );
-    console.log(response);
     const { data } = response;
     return data;
   } catch (error) {

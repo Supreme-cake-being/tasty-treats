@@ -3,8 +3,9 @@ import {
   fetchIngredient,
   fetchRecipesByFilters,
 } from './service/API';
-import { createMarkup } from './create-markup';
+import Pagination from 'tui-pagination';
 import debounce from 'lodash.debounce';
+import { createMarkup } from './create-markup';
 
 const gallery = document.querySelector('.gallery-list');
 const searchForm = document.querySelector('.search-form');
@@ -27,7 +28,6 @@ let currentPage = 1;
     console.log(error.message);
   }
 })();
-
 (async function addSelectIngredients() {
   try {
     const ingredients = await fetchIngredient();
@@ -45,7 +45,9 @@ let currentPage = 1;
 
 async function createFilteredMarkup() {
   try {
-    const filteredRecipes = await fetchRecipesByFilters(
+    gallery.innerHTML = '';
+
+    const response = await fetchRecipesByFilters(
       currentPage,
       categoryPlaceHolder,
       searchName.value.trim(),
@@ -53,15 +55,19 @@ async function createFilteredMarkup() {
       searchArea.value,
       searchTime.value
     );
-    const { results } = filteredRecipes;
-    gallery.innerHTML = '';
-    console.log(results);
-    createMarkup(results);
+
+    if (response.results === 0) 
+      return container.classList.add('is-hidden');
+
+    pagination.reset(response.totalPages * pageLimit);
+
+    createMarkup(response.results);
+    container.classList.remove('is-hidden');
   } catch (error) {
     console.log(error);
   }
 }
-createFilteredMarkup();
+// createFilteredMarkup();
 
 searchForm.addEventListener('submit', preventDefault);
 function preventDefault(e) {
@@ -77,7 +83,7 @@ allCategoriesBtn.addEventListener('click', async () => {
   gallery.innerHTML = '';
   categoryPlaceHolder = '';
 
-  const recipes = await fetchRecipesByFilters(
+  const response = await fetchRecipesByFilters(
     currentPage,
     categoryPlaceHolder,
     searchName.value.trim(),
@@ -85,9 +91,14 @@ allCategoriesBtn.addEventListener('click', async () => {
     searchArea.value,
     searchTime.value
   );
-  const { results } = recipes;
 
-  createMarkup(results);
+  if (response.results === 0) 
+      return container.classList.add('is-hidden');
+
+  pagination.reset(response.totalPages * pageLimit);
+
+  createMarkup(response.results);
+  container.classList.remove('is-hidden');
 });
 
 categories.addEventListener('click', async e => {
@@ -96,7 +107,7 @@ categories.addEventListener('click', async e => {
   gallery.innerHTML = '';
 
   categoryPlaceHolder = e.target.textContent.trim();
-  const recipes = await fetchRecipesByFilters(
+  const response = await fetchRecipesByFilters(
     currentPage,
     categoryPlaceHolder,
     searchName.value.trim(),
@@ -104,7 +115,112 @@ categories.addEventListener('click', async e => {
     searchArea.value,
     searchTime.value
   );
-  const { results } = recipes;
 
-  createMarkup(results);
+  pagination.reset(response.totalPages * pageLimit);
+
+  createMarkup(response.results);
 });
+
+const containerWidth = document.querySelector('.container');
+
+const getPaginationSettings = () => {
+  let pageLimit;
+  let visiblePages;
+  switch (containerWidth.clientWidth) {
+    case 1280:
+      pageLimit = 9;
+      visiblePages = 3;
+      break;
+    
+    case 768:
+      pageLimit = 8;
+      visiblePages = 3;
+      break;
+    
+    default:
+      pageLimit = 6;
+      visiblePages = 2;
+      break;
+  }
+  return { pageLimit, visiblePages };
+}
+const { pageLimit, visiblePages } = getPaginationSettings();
+
+const container = document.querySelector('#tui-pagination-container');
+const options = {
+  totalItems: 0,
+  itemsPerPage: pageLimit,
+  visiblePages: visiblePages,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+}
+
+const pagination = new Pagination(container, options);
+
+const page = pagination.getCurrentPage();
+
+const onRenderPage = async (page) => {
+  try {
+    const response = await fetchRecipesByFilters(
+      page,
+      categoryPlaceHolder,
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value
+    );
+
+    if (response.results.length === 0)
+      return container.classList.add('is-hidden');
+
+    createMarkup(response.results);
+    container.classList.remove('is-hidden');
+
+    pagination.reset(response.totalPages * pageLimit);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+onRenderPage(page);
+
+const createPagination = async (event) => {
+  try {
+    gallery.innerHTML = '';
+
+    const currentPage = event.page;
+
+    const response = await fetchRecipesByFilters(
+      currentPage,
+      categoryPlaceHolder,
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value
+    );
+
+    createMarkup(response.results);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+pagination.on('afterMove', createPagination);
