@@ -1,10 +1,11 @@
 import { fetchRecipes, fetchRecipesByCategory, fetchCategories } from '../js/service/API';
-import { createMarkup } from "./create-markup";
+// import { createMarkup } from "./create-markup";
 
-const containerWidth = document.querySelector('.container');
-const allCategoriesBtn = document.querySelector('.categories-btn');
+// const containerWidth = document.querySelector('.container');
+const categoriesContainer = document.querySelector('.categories-container');
+const allCategoryBtn = document.querySelector('.categories-btn');
 const categories = document.querySelector('.categories-list');
-const gallery = document.querySelector('.gallery');
+// const gallery = document.querySelector('.gallery');
 
 
 // allCategoriesBtn.addEventListener('click', async () => {
@@ -70,3 +71,27 @@ const createCategoryButtons = async () => {
   categoryListEl.insertAdjacentHTML('beforeend', markup);
 }
 createCategoryButtons();
+
+let lastClickedBtn = null;
+categoriesContainer.addEventListener('click', (e) => {
+  const Btn = e.target;
+  if (Btn.nodeName !== 'BUTTON') {
+    return;
+  }
+  if (lastClickedBtn) {
+    lastClickedBtn.classList.remove('active');
+  }
+  if (Btn === allCategoryBtn) {
+    removeActive();
+  } else {
+    allCategoryBtn.classList.remove('active');
+  }
+  Btn.classList.add('active');
+  lastClickedBtn = Btn;
+});
+const removeActive = () => {
+  const buttons = categories.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.classList.remove('active');
+  });
+}
