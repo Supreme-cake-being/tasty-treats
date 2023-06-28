@@ -29,11 +29,12 @@ const fetchRecipesByCategory = async (categoryName) => {
   }
 }
 
-const fetchRecipesByFilters = async( keyword, ingredientName, areaName, selectedTime) => {
+const fetchRecipesByFilters = async(categoryName, keyword, ingredientName, areaName, selectedTime) => {
   try {
     const response = await axios.get(
       `${BASE_URL}/recipes`, {
         params: {
+          category: categoryName,
           title: keyword,
           ingredient: ingredientName,
           area: areaName,
