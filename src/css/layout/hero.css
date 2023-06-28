@@ -21,8 +21,6 @@
     width: 446px;
     height: auto;
     margin-bottom: 32px;
-    margin-left: 32px;
-    margin-right: 290px;
   }
 
   @media (min-width: 1280px) {
@@ -99,7 +97,7 @@
   }
 
   @media (min-width: 768px) {
-    margin-left: 32px;
+    margin-left: 0;
     width: 871px;
     height: 468px;
   }
