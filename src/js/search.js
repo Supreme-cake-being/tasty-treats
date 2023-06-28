@@ -15,6 +15,9 @@ const searchTime = document.querySelector('.select-time');
 const allCategoriesBtn = document.querySelector('.categories-btn');
 const categories = document.querySelector('.categories-list');
 
+let categoryPlaceHolder;
+let currentPage = 1;
+
 (async function addSelectAreas() {
   try {
     const areas = await fetchArea();
@@ -43,6 +46,7 @@ const categories = document.querySelector('.categories-list');
 async function createFilteredMarkup() {
   try {
     const filteredRecipes = await fetchRecipesByFilters(
+      currentPage,
       categoryPlaceHolder,
       searchName.value.trim(),
       searchIngredients.value,
@@ -56,6 +60,7 @@ async function createFilteredMarkup() {
     console.log(error);
   }
 }
+createFilteredMarkup();
 
 searchForm.addEventListener('submit', preventDefault);
 function preventDefault(e) {
@@ -67,13 +72,12 @@ searchArea.addEventListener('change', createFilteredMarkup);
 searchTime.addEventListener('change', createFilteredMarkup);
 searchName.addEventListener('input', debounce(createFilteredMarkup, 300));
 
-let categoryPlaceHolder;
-
 allCategoriesBtn.addEventListener('click', async () => {
   gallery.innerHTML = '';
   categoryPlaceHolder = '';
 
   const recipes = await fetchRecipesByFilters(
+    currentPage,
     categoryPlaceHolder,
     searchName.value.trim(),
     searchIngredients.value,
@@ -92,6 +96,7 @@ categories.addEventListener('click', async e => {
 
   categoryPlaceHolder = e.target.textContent.trim();
   const recipes = await fetchRecipesByFilters(
+    currentPage,
     categoryPlaceHolder,
     searchName.value.trim(),
     searchIngredients.value,
