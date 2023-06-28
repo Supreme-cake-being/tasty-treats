@@ -61,13 +61,13 @@ fetchEvents().then(events => {
         },
         modules: [Navigation, Pagination],
 
-        // If we need pagination
-        pagination: {
-            // enabled: true,
-            el: '.swiper .swiper-pagination',
-            type: 'bullets',
-            clickable: true,
-            bulletActiveClass: true,
-        },
-    });
+    // If we need pagination
+    pagination: {
+      // enabled: true,
+      el: '.swiper .swiper-pagination',
+      type: 'bullets',
+      clickable: true,
+      bulletActiveClass: 'active',
+    },
+  });
 });
