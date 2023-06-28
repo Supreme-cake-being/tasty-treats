@@ -1,5 +1,4 @@
 import {
-  fetchRecipes,
   fetchArea,
   fetchIngredient,
   fetchRecipesByFilters,
@@ -58,6 +57,7 @@ async function createFilteredMarkup() {
   }
 }
 
+searchForm.addEventListener('submit', preventDefault);
 function preventDefault(e) {
   e.preventDefault();
 }
@@ -66,7 +66,6 @@ searchIngredients.addEventListener('change', createFilteredMarkup);
 searchArea.addEventListener('change', createFilteredMarkup);
 searchTime.addEventListener('change', createFilteredMarkup);
 searchName.addEventListener('input', debounce(createFilteredMarkup, 300));
-searchForm.addEventListener('submit', preventDefault);
 
 let categoryPlaceHolder;
 
