@@ -1,113 +1,127 @@
 import axios from 'axios';
 import Pagination from 'tui-pagination';
-import { createMarkup } from "./create-markup";
 
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
-const containerWidth = document.querySelector('.container');
+const imageContainer = document.querySelector('#image-container');
+const paginationContainer = document.querySelector('#tui-pagination-container');
 
-const getPaginationSettings = () => {
-  let pageLimit;
-  let visiblePages;
-  switch (containerWidth.clientWidth) {
-    case 1280:
-      pageLimit = 9;
-      visiblePages = 3;
-      break;
-    
-    case 768:
-      pageLimit = 8;
-      visiblePages = 3;
-      break;
-    
-    default:
-      pageLimit = 6;
-      visiblePages = 2;
-      break;
-  }
-  return { pageLimit, visiblePages };
-}
-const { pageLimit, visiblePages } = getPaginationSettings();
-
-const fetchRecipes = async (page) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/recipes`, {
-        params: {
-          page: page,
-          limit: pageLimit,
-        }
-      }
-    );
-    const { data } = response;
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-const container = document.querySelector('#tui-pagination-container');
-const options = {
-  totalItems: 0,
-  itemsPerPage: pageLimit,
-  visiblePages: visiblePages,
+const pagination = new Pagination(paginationContainer, {
+  totalItems: 1,
+  itemsPerPage: 9,
+  visiblePages: 10,
   page: 1,
-  centerAlign: true,
+  centerAlign: false,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
-    page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
-}
+});
 
-const pagination = new Pagination(container, options);
+const prevButton = document.querySelector('.tui-ico-prev');
+const nextButton = document.querySelector('.tui-ico-next');
+prevButton.textContent = '«';
+nextButton.textContent = '»';
 
-const page = pagination.getCurrentPage();
+const moveButtons = document.querySelectorAll('.tui-page-btn.tui-move');
+moveButtons.forEach(button => {
+  if (button.textContent === 'prev') {
+    button.textContent = '<';
+  } else if (button.textContent === 'next') {
+    button.textContent = '>';
+  }
+});
 
-const onRenderPage = async (page) => {
-  try {
-    const response = await fetchRecipes(page);
+paginationContainer.classList.remove('is-hidden');
 
-    if (response.results.length === 0)
-      return container.classList.add('is-hidden');
+async function updateData(pageNum) {
+  const allRecipes = await fetchAllRecipes();
+  if (allRecipes) {
+    pagination.setTotalItems(allRecipes.length);
 
-    createMarkup(response.results);
-    container.classList.remove('is-hidden');
+    const itemsPerPage = pagination.options.itemsPerPage;
+    const startIndex = (pageNum - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pageData = allRecipes.slice(startIndex, endIndex);
 
-    pagination.reset(response.totalPages * pageLimit);
-  } catch (error) {
-    console.log(error.message);
+    displayData(pageData);
+
+    if (allRecipes.length > itemsPerPage) {
+      container.classList.remove('is-hidden');
+    } else {
+      container.classList.add('is-hidden');
+    }
+  } else {
+    container.classList.add('is-hidden');
   }
 }
-onRenderPage(page);
 
-const createPagination = async (event) => {
+Pagination.prototype.reset = function (totalItems) {
+  this.setTotalItems(totalItems);
+  this.reset();
+  this.movePageTo(1);
+};
+
+function getCurrentPage() {
+  return pagination.getCurrentPage();
+}
+
+updateData(1);
+
+async function fetchAllRecipes() {
   try {
-    const gallery = document.querySelector('.gallery-list');
-    gallery.innerHTML = '';
+    const response = await axios.get(`${BASE_URL}/recipes`);
+    const data = response.data;
+    const totalPages = data.totalPages;
 
-    const currentPage = event.page;
+    const promises = [];
+    for (let page = 1; page <= totalPages; page += 1) {
+      promises.push(fetchRecipes(page));
+    }
 
-    const response = await fetchRecipes(currentPage);
+    const results = await Promise.all(promises);
+    const allRecipes = results.flatMap(result => result.results);
 
-    createMarkup(response.results);
+    return allRecipes;
   } catch (error) {
-    console.log(error.message);
+    console.error('Error while fetching recipes:', error);
+    return null;
   }
 }
 
-pagination.on('afterMove', createPagination);
+async function fetchRecipes(page) {
+  try {
+    const response = await axios.get(`${BASE_URL}/recipes?page=${page}`);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error('Error while fetching recipes:', error);
+    return null;
+  }
+}
+
+function displayData(data) {
+  imageContainer.innerHTML = '';
+
+  for (let i = 0; i < data.length; i++) {
+    const recipe = data[i];
+    const imageElement = document.createElement('img');
+    imageElement.src = recipe.imageUrl;
+    imageContainer.appendChild(imageElement);
+  }
+}

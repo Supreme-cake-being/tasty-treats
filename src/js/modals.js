@@ -1,20 +1,19 @@
 import { fetchRecipesById, fetchRecipes } from "./service/API";
 import { createMarkup } from "./create-markup";
 
-
 //const data = await fetchRecipesById('6462a8f74c3d0ddd288980d4')
 //console.log(data);
 //// заглушка для відпрацювання модалки
 
-// const gallery = document.querySelector('.gallery');
-//  const fetch = async () => {
-//     gallery.innerHTML = '';
-//     // const pageLimit = getPageLimit();
-//     const recipes = await fetchRecipes();
-//     const { results } = recipes;
-//   createMarkup(results);
-// }
-// fetch();
+const gallery = document.querySelector('.gallery');
+ const fetch = async () => {
+    gallery.innerHTML = '';
+    // const pageLimit = getPageLimit();
+    const recipes = await fetchRecipes();
+    const { results } = recipes;
+//   createMarkup(results); Я закомментив, бо рендерило неправильну галлерею на початку @Влад
+}
+fetch();
 
 ////
 
@@ -34,19 +33,14 @@ const refs = {
     closeModalBtn: document.querySelector(".modal-close"),
 }
 // заповнення модалки даними рецепту
-
 const renderModals = (data) => {
-console.log(data);
-   
+
+    refs.recipeStarRating.innerHTML = '';
+    refs.recipeTags.innerHTML = '';
+    refs.recipeIngredients.innerHTML = '';
+
     refs.recipeName.textContent = data.title;
     refs.recipeRating.textContent = data.rating;
-    
-    if ( data.youtube === "" ){
-        refs.recipeVideo.src = data.preview
-    }
-    else {
-        refs.recipeVideo.src = data.youtube.replace("watch?v=", "embed/")
-    }
 
     const starRating = [];
     for (let i = 0; i < 5; i++) {
@@ -79,48 +73,18 @@ console.log(data);
     refs.recipeIngredients.insertAdjacentHTML("afterBegin", ingredients.join(""))
     
     refs.recipeInstructions.textContent = data.instructions;
-    refs.favBtn.setAttribute("data-id", data._id)
-    if (findIdiInFavorites(data._id)) {
-        refs.favBtn.textContent = "Remove from favorite"
-        refs.favBtn.setAttribute("favorites",1)
-    }
-    else { 
-        refs.favBtn.textContent = "Add to favorite"
-        refs.favBtn.setAttribute("favorites",0)
-    }
-}
-// очистка полыв модалки
-const clearModalFields = () => {
-    refs.recipeName.textContent = "";
-    refs.recipeRating.textContent = "";
-    refs.recipeStarRating.innerHTML = "";
-    refs.recipeVideo.src = "";
-    refs.recipeCookTime.textContent = "";
-    refs.recipeTags.innerHTML = "";
-    refs.recipeIngredients.innerHTML = "";
-    refs.recipeInstructions.textContent = "";
-}
-//перевірка зноходження рецепта в favorites
-const findIdiInFavorites = (id) => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-    const finded = favorites.some(fav => fav._id === id)
-    return finded;
 }
 
-// const addToFavorite = (name,data) => {
-//     let existing = localStorage.getItem(name);
-// 	existing = existing ? existing.split(',') : [];
-// 	existing.push(data);
-//     localStorage.setItem(name, existing.toString());
-// }
-
+// const overlay = document.querySelector(".modal-overlay");
+// const modal = document.querySelector(".modal")
+// const favBtn = document.querySelector(".modal-fav-btn");
+// const closeModalBtn = document.querySelector(".modal-close");
 let escList
 // закриття модалки
 const closeModal = () => { 
     refs.overlay.classList.remove("active");
     refs.modal.classList.remove("active");
     document.body.style.overflow = "";
-    clearModalFields();
     document.removeEventListener("keydown", escList);
 } 
 
@@ -138,32 +102,14 @@ const openModal = () => {
 
 //лістнери модалки
 refs.recipe.addEventListener("click", (evt) => {
-    if (evt.target.nodeName !== "BUTTON")
-        return;
-
-    fetchRecipesById(evt.target.getAttribute('data-id'))
+    fetchRecipesById(evt.target.attributes["data-id"].value)
         .then((data) => {
             evt.stopPropagation();
             renderModals(data);
-            openModal();
+            openModal()
         })
 })
 
 refs.closeModalBtn.addEventListener("click", closeModal);
-
-refs.overlay.addEventListener("click", (evt) => {
-    if (evt.target === evt.currentTarget) { closeModal() }
-    if (evt.target.type === "button") {
-        if (evt.target.attributes.favorites.value === "1") {                
-            refs.favBtn.textContent = "Add to favorite"
-            refs.favBtn.setAttribute("favorites",0)
-
-        }
-        else {
-            refs.favBtn.textContent = "Remove from favorite"
-            refs.favBtn.setAttribute("favorites",1)
-           
-        }
-    }
-})
-
+refs.favBtn.addEventListener("click", closeModal);
+refs.overlay.addEventListener("click",closeModal)

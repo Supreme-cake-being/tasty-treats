@@ -57,6 +57,9 @@
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
+  background-image: url(/images/search.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .input-search {

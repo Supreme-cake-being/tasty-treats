@@ -35,7 +35,7 @@
   .modal {
     opacity: 0;
     visibility: hidden;
-    /* visibility: visible; */
+    visibility: visible;
     width: 335px;
     height: 1171px;
     padding: 40px 20px 40px 20px;
@@ -53,6 +53,11 @@
 }
 
 @media screen and (min-width: 768px) {
+  .modal {
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .modal {
     width: 685px;
     height: 681px;
@@ -84,7 +89,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-close {
     top: 16px;
     right: 16px;
@@ -103,7 +108,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-recipe-intro {
     display: flex;
     flex-direction: row;
@@ -120,11 +125,7 @@
   }
 }
 
-iframe {
-  overflow: hidden;
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-recipe-video {
     width: 332px;
     height: 300px;
@@ -140,7 +141,7 @@ iframe {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-recipe-info {
     display: flex;
     gap: 16px;
@@ -197,7 +198,7 @@ iframe {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-tag {
     display: flex;
     gap: 8px;
@@ -228,7 +229,7 @@ iframe {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-ingredients {
     display: flex;
     flex-direction: column;
@@ -269,7 +270,7 @@ iframe {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .modal-recipe-desk {
     color: rgba(5, 5, 5, 0.8);
     text-align: start;

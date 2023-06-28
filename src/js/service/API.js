@@ -123,16 +123,4 @@ const fetchEvents = async () => {
   }
 }
 
-const fetchPopularRecipes = async () => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/recipes/popular`
-    );
-    const { data } = response;
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchArea, fetchRecipesByFilters, fetchCategories, fetchRecipesById, fetchEvents, fetchPopularRecipes };
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchArea, fetchRecipesByFilters, fetchCategories, fetchRecipesById, fetchEvents };
