@@ -6,7 +6,7 @@ import {
 import { createMarkup } from './create-markup';
 import debounce from 'lodash.debounce';
 
-const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery-list');
 const searchForm = document.querySelector('.search-form');
 const searchName = document.querySelector('.input-search');
 const searchIngredients = document.querySelector('.select-ingredients');
@@ -55,6 +55,7 @@ async function createFilteredMarkup() {
     );
     const { results } = filteredRecipes;
     gallery.innerHTML = '';
+    console.log(results);
     createMarkup(results);
   } catch (error) {
     console.log(error);

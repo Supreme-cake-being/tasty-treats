@@ -40,7 +40,6 @@ const fetchRecipesByFilters = async(currentPage, categoryName, keyword, ingredie
     } else {
       perPageLocal = 5;
     }
-    console.log(perPageLocal)
     const response = await axios.get(
       `${BASE_URL}/recipes`, {
         params: {
