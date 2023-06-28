@@ -35,7 +35,7 @@
   .modal {
     opacity: 0;
     visibility: hidden;
-    visibility: visible;
+    /* visibility: visible; */
     width: 335px;
     height: 1171px;
     padding: 40px 20px 40px 20px;
