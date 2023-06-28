@@ -2,19 +2,37 @@
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  padding-left: 20px;
+  margin-top: 24px;
 }
 
-/* @media screen and (min-width: 768px) {
-  .gallery {
-    display: flex;
+@media (min-width: 768px) {
+  .gallery-list {
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 32px;
-    row-gap: 16px;
-
-    margin-top: 32px;
+    column-gap: 24px;
+    row-gap: 24px;
   }
-} */
 
+  .card-recipe {
+    width: calc(50% - 12px);
+  }
+}
+@media (min-width: 1024px) {
+  .card-recipe {
+    width: calc(33.33% - 16px);
+    padding: 0;
+  }
+
+  .card-img {
+    width: 250px;
+    height: 287px;
+  }
+
+  .card-description {
+    width: 100%;
+  }
+}
 .card-recipe {
   position: relative;
 
