@@ -1,4 +1,4 @@
-import { fetchRecipes, fetchRecipesByCategory, fetchCategories, fetchRecipesByFilters } from '../js/service/API';
+import { fetchRecipes, fetchRecipesByCategory, fetchCategories } from '../js/service/API';
 import { createMarkup } from "./create-markup";
 
 const containerWidth = document.querySelector('.container');
