@@ -46,3 +46,10 @@
     display: block;
   }
 }
+
+.favorites-gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
