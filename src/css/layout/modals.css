@@ -1,26 +1,27 @@
 /* custom scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 20px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #d6dee1;
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
 /* custom scrollbar end */
 
 .modal-overlay {
   opacity: 0;
+  /* visibility: visible; */
   visibility: hidden;
   position: fixed;
   top: 0;
@@ -35,7 +36,7 @@
   .modal {
     opacity: 0;
     visibility: hidden;
-    visibility: visible;
+    /* visibility: visible; */
     width: 335px;
     height: 1171px;
     padding: 40px 20px 40px 20px;
@@ -91,6 +92,7 @@
     width: 24px;
     height: 24px;
     padding: 6px;
+    cursor: pointer;
   }
 }
 
@@ -260,7 +262,7 @@ iframe {
   .modal-recipe-desk {
     color: rgba(5, 5, 5, 0.8);
     text-align: start;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     overflow-y: scroll;
     max-height: 288px;
     font-size: 14px;
@@ -283,6 +285,7 @@ iframe {
 }
 
 .modal-fav-btn {
+  position: initial;
   display: block;
   font-size: 14px;
   font-weight: 500;
@@ -294,9 +297,244 @@ iframe {
   padding: 14px 28px 14px 28px;
   border-radius: 15px;
   margin-left: 0;
-  /* gap: 10px */
 }
+
+.modal-rating-btn {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(5, 5, 5, 1);
+  background-color: rgba(248, 248, 248, 1);
+  padding: 14px 28px 14px 28px;
+  border-radius: 15px;
+  border: 1px solid rgba(155, 181, 55, 1);
+  margin-left: 0;
+}
+
 .modal-fav-btn:hover,
 .modal-fav-btn:focus {
   color: rgba(5, 5, 5, 1);
+}
+
+.modal-rating-btn:hover,
+.modal-rating-btn:focus {
+  color: rgba(248, 248, 248, 1);
+  background-color: rgba(155, 181, 55, 1);
+}
+
+@media screen and (min-width: 375px) {
+  .modal-rating {
+    opacity: 0;
+    visibility: hidden;
+    width: 424px;
+    height: 364px;
+    padding: 32px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 1);
+    /* text-align: left; */
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    transition: opacity 250ms ease-in-out;
+    transition-delay: 100ms;
+    border-radius: 15px;
+  }
+}
+
+.modal-rating.active {
+  opacity: 1;
+  visibility: visible;
+  animation: fadeIn;
+  animation-duration: 500ms;
+}
+
+.modal-raiting-head {
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.modal-rating-rewiews {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-rating-raiting {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.modal-rating-desk {
+  margin-bottom: 32px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  min-height: 90px;
+  color: rgba(5, 5, 5, 0.8);
+}
+
+.form-rating-rate {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-rate-input {
+  padding: 14px;
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+}
+
+.modal-rate-input:not(:placeholder-shown):valid {
+  border: 1px solid #3cbc81;
+}
+
+.modal-rate-input:not(:placeholder-shown):invalid {
+  border: 1px solid red;
+}
+
+.modal-rate-input::placeholder {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-rate-btn {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(248, 248, 248, 1);
+  background-color: rgba(155, 181, 55, 1);
+  padding: 14px 28px 14px 28px;
+  border-radius: 15px;
+  margin-left: 0;
+}
+
+/* #radios label {
+  position: relative;
+}
+
+input[type='radio'] {
+  opacity: 0;
+  margin-right: 8px;
+  position: absolute;
+}
+
+input[type='radio'] + svg {
+  cursor: pointer;
+}
+
+input[type='radio']:hover + svg {
+  fill: rgba(238, 161, 12, 1);
+}
+
+input[type='radio']:checked + svg {
+  fill: rgba(238, 161, 12, 1);
+}
+
+/* .rating-star:hover,
+.rating-star:focus {
+  fill: rgba(238, 161, 12, 1);
+} */
+
+/* svg {
+ 
+  margin-right: 2px;
+  width: 24px;
+  height: 24px;
+  fill: rgba(217, 217, 217, 1);
+} */
+
+/*  */
+fieldset {
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+form {
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+/* .star-cb-group */
+.star-cb-group {
+  /* remove inline-block whitespace */
+  /* font-size: 0;
+  border: #000;
+  /* flip the order so we can use the + and ~ combinators */
+  /* unicode-bidi: bidi-override;
+  direction: rtl; */
+  /* display: flex;
+  flex-direction: row-reverse; */
+  /* the hidden clearer */
+}
+.modal-staring {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+/* .star-cb-group * {
+  font-size: 1rem;
+} */
+.star-cb-group > input {
+  display: none;
+}
+.star-cb-group > input + label {
+  /* only enough room for the star */
+  display: inline-block;
+  /* overflow: hidden; */
+  text-indent: 9999px;
+  width: 1em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.star-cb-group > input + label:before {
+  display: inline-block;
+  text-indent: -9999px;
+  content: url('../../img/Star5.svg');
+}
+.star-cb-group > input:checked ~ label:before,
+.star-cb-group > input + label:hover ~ label:before,
+.star-cb-group > input + label:hover:before {
+  content: url('../../img/Star1.svg');
+  text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+  text-indent: -9999px;
+  width: 0.5em;
+  margin-left: -0.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+  width: 0.5em;
+}
+.star-cb-group:hover > input + label:before {
+  content: url('../../img/Star5.svg');
+  text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before,
+.star-cb-group:hover > input + label:hover:before {
+  content: url('../../img/Star1.svg');
+  text-shadow: 0 0 1px #333;
 }
