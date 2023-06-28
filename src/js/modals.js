@@ -11,7 +11,7 @@ const gallery = document.querySelector('.gallery');
     // const pageLimit = getPageLimit();
     const recipes = await fetchRecipes();
     const { results } = recipes;
-//   createMarkup(results);
+//   createMarkup(results); Я закомментив, бо рендерило неправильну галлерею на початку @Влад
 }
 fetch();
 
