@@ -67,7 +67,7 @@ fetchEvents().then(events => {
       el: '.swiper .swiper-pagination',
       type: 'bullets',
       clickable: true,
-      bulletActiveClass: true,
+      bulletActiveClass: 'active',
     },
   });
 });
