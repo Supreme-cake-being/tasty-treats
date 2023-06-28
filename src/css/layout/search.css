@@ -5,6 +5,7 @@
 .search-container {
   padding-left: 16px;
   padding-right: 16px;
+  flex-basis: 70%;
 }
 
 .search-form{
