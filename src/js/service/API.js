@@ -31,9 +31,20 @@ const fetchRecipesByCategory = async (categoryName) => {
 
 const fetchRecipesByFilters = async(categoryName, keyword, ingredientName, areaName, selectedTime) => {
   try {
+    let perPageLocal;
+
+    if (window.innerWidth >= 1280) {
+      perPageLocal = 9;
+    } else if (window.innerWidth >= 768) {
+      perPageLocal = 8;
+    } else {
+      perPageLocal = 5;
+    }
+    console.log(perPage1)
     const response = await axios.get(
       `${BASE_URL}/recipes`, {
         params: {
+          perPage: perPageLocal,
           category: categoryName,
           title: keyword,
           ingredient: ingredientName,
@@ -42,6 +53,7 @@ const fetchRecipesByFilters = async(categoryName, keyword, ingredientName, areaN
         }
       }
     );
+    console.log(response);
     const { data } = response;
     return data;
   } catch (error) {

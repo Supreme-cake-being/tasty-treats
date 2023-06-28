@@ -23,8 +23,8 @@
     flex-basis: 70%;
   }
 }
-@media screen and (min-width: 1280px) {
+/* @media screen and (min-width: 1280px) {
   .layout-container {
-    /* gap: 64px; */
+    gap: 64px; 
   }
-}
+} */
