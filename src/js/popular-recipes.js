@@ -42,8 +42,6 @@ function truncateText(text) {
 
     const maxLength = makeMaxLength();
 
-    console.log("maxLength: " + maxLength)
-
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
     }
@@ -76,7 +74,6 @@ function makeMaxLength() {
     return maxLength;
   }
 
-  
 
   window.addEventListener('resize', function() {
     moveElement();
@@ -97,7 +94,6 @@ function makeMaxLength() {
       const newParent = document.querySelector('main');
       newParent.appendChild(element);
     }
-
   }
 
   
