@@ -88,16 +88,49 @@ function renderPage() {
 
 function renderCard(favorite) {
   return `
-    <div class="card-recipe" style="background-image: url(${favorite.preview})">
-        <button class="favorites-btn" data-id="${favorite._id}" type="button">
-            <svg class="icon-heart" width="22" height="22">
-                <use href="./img/icons.svg#heart-filled"></use>
-            </svg>
-        </button>
-        <h3 class="card-title">${favorite.title}</h3>
-        <p class="card-description">${favorite.description}</p>
-        <button type="button" class="card-button" data-id="${favorite._id}">See recipe</button>
-    </div>
+    <li class="card-recipe">
+            <img class="card-img" src="${favorite.preview}" />
+            <button class="favorites-btn" data-id="${favorite._id}" type="button">
+                <svg class="is-favorite" width="22" height="22">
+                    <use href="./img/icons.svg#heart"></use>
+                </svg>
+            </button>
+            <div class="card-info">
+                <h3 class="card-title">${favorite.title}</h3>
+                <p class="card-description">${favorite.description}</p>
+                <div class="card-additional-info">
+                    <p>${favorite.rating}</p>
+                    <ul class="card-rating">
+                        <li>
+                            <svg class="card-star" width="22" height="22">
+                                <use href="./img/icons.svg#star"></use>
+                            </svg>    
+                        </li>
+                        <li>
+                            <svg class="card-star" width="22" height="22">
+                                <use href="./img/icons.svg#star"></use>
+                            </svg> 
+                        </li>
+                        <li>
+                            <svg class="card-star" width="22" height="22">
+                                <use href="./img/icons.svg#star"></use>
+                            </svg>   
+                        </li>
+                        <li>
+                            <svg class="card-star" width="22" height="22">
+                                <use href="./img/icons.svg#star"></use>
+                            </svg>     
+                        </li>
+                        <li>
+                            <svg class="card-star" width="22" height="22">
+                                <use href="./img/icons.svg#star"></use>
+                            </svg>     
+                        </li>
+                    </ul>
+                    <button type="button" class="card-button" data-id="${favorite._id}">See recipe</button>
+                </div>
+            </div>
+        </li>
   `;
 }
 
