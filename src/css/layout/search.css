@@ -7,6 +7,10 @@
   padding-right: 16px;
 }
 
+.search-form{
+  margin-bottom: 20px;
+}
+
 .search-list {
   display: flex;
   flex-wrap: wrap;
@@ -60,6 +64,7 @@
 
 .input-search {
   padding-left: 48px;
+  width: 100%;
 }
 
 .input-container {
