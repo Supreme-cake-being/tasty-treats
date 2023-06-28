@@ -22,30 +22,24 @@
     <main>
       <load ="partials/favorites/favorites-hero.html" />
 
-      <!-- <div class="categories-section"> -->
-      <div class="container">
-        <div class="in-favorites">
-          <div class="no-data">
-            <img class="no-data-img" src="./img/no-data.png" alt="no data" />
-            <p>
-              It appears that you haven't added any recipes to your favorites
-              yet. To get started, you can add recipes that you like to your
-              favorites for easier access in the future.
-            </p>
-          </div>
-          <!-- Categories list -->
-          <ul class="categories"></ul>
-        </div>
-        <!-- Favorites list -->
-        <div class="favorites-gallery">
-          <ul class="favorites"></ul>
-        </div>
+      <div class="no-data">
+        <img class="no-data-img" src="./img/no-data.png" alt="no data" />
+        <p>
+          It appears that you haven't added any recipes to your favorites yet.
+          To get started, you can add recipes that you like to your favorites
+          for easier access in the future.
+        </p>
       </div>
-      <!-- </div> -->
+      
+      <!-- Categories list -->
+      <ul class="categories"></ul>
+      <!-- Favorites list -->
+      <ul class="favorites"></ul>
 
       <load ="partials/modals.html" />
     </main>
 
     <script type="module" src="./favorites.js"></script>
+    <script type="module" src="./js/header.js"></script>
   </body>
 </html>
