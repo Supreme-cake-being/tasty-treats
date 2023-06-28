@@ -27,7 +27,7 @@ const refs = {
     recipeTags: document.querySelector(".modal-tag"),
     recipeIngredients: document.querySelector(".modal-ingredients"),
     recipeStarRating: document.querySelector(".modal-star-raiting"),
-    recipe: document.querySelector(".gallery"),
+    recipe: document.querySelector(".gallery-list"),
     overlay: document.querySelector(".modal-overlay"),
     modal: document.querySelector(".modal"),
     modalRating: document.querySelector(".modal-rating"),
