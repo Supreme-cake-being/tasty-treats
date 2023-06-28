@@ -85,8 +85,11 @@
   margin-right: 4px;
 }
 
-.tui-prev,
-.tui-page-btn.tui-last-child {
+.tui-next {
+  margin-left: 14px;
+}
+
+.tui-prev {
   margin-right: 14px;
 }
 
@@ -102,14 +105,25 @@
   margin-right: 8px;
 }
 
+.tui-page-btn.tui-last-child {
+  margin-right: 0;
+}
+
+.tui-page-btn.tui-first-child.tui-last-child {
+  margin: 0;
+}
+
 @media screen and (min-width: 768px) {
   .tui-first,
   .tui-next {
     margin-right: 8px;
   }
 
-  .tui-prev,
-  .tui-page-btn.tui-last-child {
+  .tui-next {
+    margin-left: 24px;
+  }
+
+  .tui-prev {
     margin-right: 24px;
   }
 
