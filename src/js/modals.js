@@ -138,7 +138,10 @@ const openModal = () => {
 
 //лістнери модалки
 refs.recipe.addEventListener("click", (evt) => {
-    fetchRecipesById(evt.target.attributes["data-id"].value)
+    if (evt.target.nodeName !== "BUTTON")
+        return;
+
+    fetchRecipesById(evt.target.getAttribute('data-id'))
         .then((data) => {
             evt.stopPropagation();
             renderModals(data);

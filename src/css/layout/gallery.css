@@ -43,7 +43,7 @@
   object-fit: cover;
 }
 
-.favorites-btn {
+.card-favorites-btn {
   position: absolute;
 
   top: 16px;
@@ -129,6 +129,7 @@
 .card-rating {
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
 .card-star {
