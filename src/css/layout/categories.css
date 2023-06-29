@@ -10,15 +10,6 @@
   padding-right: 16px;
 }
 
-.categories-btn.active {
-  background-color: var(--accent-color);
-  border-color: currentColor;
-  color: var(--dark-theme-text);
-}
-.category-btn.active {
-  color: var(--accent-color);
-}
-
 .categories-btn {
   padding: 14px 29px;
   font-size: 18px;
