@@ -91,7 +91,7 @@ function renderFavotites(favorites, selectedCategory) {
     )
     .map(favorite => {
       const item = document.createElement('li');
-      item.classList.add('card-recipe');
+      item.classList.add('card-recipe', 'favorit-recipe');
       item.innerHTML = renderCard(favorite);
       item
         .querySelector('.card-favorites-btn')
@@ -126,9 +126,8 @@ function renderPage() {
 function renderCard({ _id, preview, title, description, rating }) {
   const starRating = [];
 
-  rating = Math.floor(rating)
-  if (rating > 5)
-    rating = 5; 
+  rating = Math.floor(rating);
+  if (rating > 5) rating = 5;
 
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
@@ -148,7 +147,7 @@ function renderCard({ _id, preview, title, description, rating }) {
   return `
             <img class="card-img" src="${preview}" />
             <button class="card-favorites-btn" data-id="${_id}" type="button">
-                <svg class="icon-heart" width="22" height="22">
+                <svg class="icon-heart is-favorite" width="22" height="22">
                     <use href="/tasty-treats/assets/icons-e30ccde6.svg#heart"></use>
                 </svg>
             </button>
