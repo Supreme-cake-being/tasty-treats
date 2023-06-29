@@ -10,6 +10,7 @@ function onClick (e) {
     fetchPopularRecipes()
     .then(json => createMarkup(json))
     .then(markup => addMarkup(markup))
+    .then(data => moveElement())
 }
 
 //функция создания разметки - принимает массив, возвращает строку разметки
@@ -39,24 +40,69 @@ function addMarkup(markup){
 // функция обрезки описания
 function truncateText(text) {
 
-    const maxLength = 50;
+    const maxLength = makeMaxLength();
 
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
     }
     return text;
-  }
+}
 
-  // функция обрезки названия
+// функция обрезки названия
 function truncateTitle(text) {
 
-    const maxLength = 15;
+    const maxLength = 10;
 
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...';
     }
     return text;
   }
+
+// функция проверки ширины окна браузера --> возращает максимальную длину строки 
+function makeMaxLength() {
+
+    if (window.innerWidth < 768) {
+      const maxLength = 80;
+      return maxLength;
+    }
+    if (window.innerWidth < 1280) {
+      const maxLength = 60;
+      return maxLength;
+    }
+    const maxLength = 95;
+    return maxLength;
+  }
+
+
+  window.addEventListener('resize', function() {
+    moveElement();
+  });
+
+  // функция перестановки блока
+  function moveElement() {
+    let screenWidth = window.innerWidth;
   
+    if (screenWidth > 767) { // Пороговое значение ширины экрана для перемещения элемента
+      const element = document.getElementById('popular-recipes');
+      const newParent = document.querySelector('.categories-section');
+      const divContainer = element.querySelector('.container');
+      divContainer.classList.remove('container');
+      newParent.appendChild(element);
+    }
+
+    if (screenWidth < 768) { // Пороговое значение ширины экрана для перемещения элемента
+      const element = document.getElementById('popular-recipes');
+      const newParent = document.querySelector('main');
+      const divContainer = element.querySelector('div');
+      divContainer.classList.add('container');
+      newParent.appendChild(element);
+    }
+  }
 
   
+
+
+
+  
+
