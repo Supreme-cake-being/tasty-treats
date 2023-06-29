@@ -30,7 +30,7 @@ export const createMarkup = (array) => {
             <img class="card-img" src="${preview}" />
             <button class="card-favorites-btn" data-id="${_id}" type="button">
                 <svg class="icon-heart" width="22" height="22">
-                    <use href="./img/icons.svg#heart"></use>
+                    <use href="/tasty-treats/assets/icons-e30ccde6.svg#heart"></use>
                 </svg>
             </button>
             <div class="card-info">
