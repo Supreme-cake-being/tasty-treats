@@ -15,6 +15,7 @@ const searchArea = document.querySelector('.select-area');
 const searchTime = document.querySelector('.select-time');
 const allCategoriesBtn = document.querySelector('.categories-btn');
 const categories = document.querySelector('.categories-list');
+const message = document.querySelector('.no-result-message');
 
 let categoryPlaceHolder;
 let currentPage = 1;
@@ -45,6 +46,7 @@ let currentPage = 1;
 
 async function createFilteredMarkup() {
   try {
+    message.classList.add('is-hidden');
     gallery.innerHTML = '';
 
     const response = await fetchRecipesByFilters(
@@ -56,8 +58,13 @@ async function createFilteredMarkup() {
       searchTime.value
     );
 
-    if (response.results === 0) 
+    if (response.results.length === 0){
+      message.classList.remove('is-hidden');
+    }
+
+    if (response.results === 0) {
       return container.classList.add('is-hidden');
+    }
 
     pagination.reset(response.totalPages * pageLimit);
 
@@ -92,8 +99,7 @@ allCategoriesBtn.addEventListener('click', async () => {
     searchTime.value
   );
 
-  if (response.results === 0) 
-      return container.classList.add('is-hidden');
+  if (response.results === 0) return container.classList.add('is-hidden');
 
   pagination.reset(response.totalPages * pageLimit);
 
@@ -131,19 +137,19 @@ const getPaginationSettings = () => {
       pageLimit = 9;
       visiblePages = 3;
       break;
-    
+
     case 768:
       pageLimit = 8;
       visiblePages = 3;
       break;
-    
+
     default:
       pageLimit = 6;
       visiblePages = 2;
       break;
   }
   return { pageLimit, visiblePages };
-}
+};
 const { pageLimit, visiblePages } = getPaginationSettings();
 
 const container = document.querySelector('#tui-pagination-container');
@@ -161,24 +167,24 @@ const options = {
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
-}
+};
 
 const pagination = new Pagination(container, options);
 
 const page = pagination.getCurrentPage();
 
-const onRenderPage = async (page) => {
+const onRenderPage = async page => {
   try {
     const response = await fetchRecipesByFilters(
       page,
@@ -199,10 +205,10 @@ const onRenderPage = async (page) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 onRenderPage(page);
 
-const createPagination = async (event) => {
+const createPagination = async event => {
   try {
     gallery.innerHTML = '';
 
@@ -221,6 +227,6 @@ const createPagination = async (event) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 pagination.on('afterMove', createPagination);
