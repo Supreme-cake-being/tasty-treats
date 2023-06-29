@@ -21,12 +21,13 @@
     width: 446px;
     height: auto;
     margin-bottom: 32px;
+    margin-left: 32px;
+    margin-right: 290px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1200px) {
     margin-bottom: 0;
     margin-right: 32px;
-    margin-left: 0;
   }
 }
 
@@ -62,6 +63,8 @@
   line-height: 18px;
   color: #050505;
   margin-bottom: 28px;
+  /* margin-left: auto;
+  margin-right: auto; */
   word-break: break-word;
 
   @media (min-width: 768px) {
@@ -94,10 +97,11 @@
 
   @media (min-width: 370px) {
     width: 497px;
+    /* margin-left: 32px; */
   }
 
   @media (min-width: 768px) {
-    margin-left: 0;
+    margin-left: 32px;
     width: 871px;
     height: 468px;
   }
@@ -108,20 +112,22 @@
 }
 
 .swiper-slide {
-  width: 512px;
-  height: 302px;
-
-  @media (min-width: 768px) {
-    width: 871px;
-    height: 468px;
-  }
+  opacity: 0 !important;
 }
 
+.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+.swiper-slide {
+  position: absolute;
+}
 .slide-container {
-  width: fit-content;
   position: relative;
   display: flex;
   gap: 16px;
+  /* width: fit-content; */
+  width: max-content;
 }
 
 .cook_image {
@@ -145,9 +151,6 @@
 
   background: #050505;
   background-image: url(../../img/Ellipse\ 7268.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 90%;
 
   @media (min-width: 370px) {
     width: 200px;
@@ -164,87 +167,50 @@
   height: 150px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 47px;
-  margin-bottom: 15px;
+  margin-top: 67px;
+  margin-bottom: 20px;
   background-size: 304px;
-  object-fit: cover;
-
-  @media (min-width: 370px) {
-    margin-top: 47px;
-    margin-bottom: 20px;
-  }
+  border: rgba(155, 181, 55, 0.6000000238418579);
 
   @media (min-width: 768px) {
-    margin-top: 52px;
     width: 262px;
     height: 262px;
   }
 }
-
-.info-container {
-  width: 150px;
-  height: 38px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  background: url(../../img/Ellipse\ 7268.png);
-
-  @media (min-width: 370px) {
-    width: 172px;
-    height: 44px;
-    font-size: 10px;
-  }
-
-  @media (min-width: 768px) {
-    width: 257px;
-    height: 40px;
-  }
-}
-
 .recipe-name {
-  margin-bottom: 4px;
-  width: inherit;
-  height: auto;
-  color: rgba(248, 248, 248, 0.6);
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.6);
+
   font-size: 10px;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 18px;
   text-transform: uppercase;
 
   @media (min-width: 768px) {
-    margin-bottom: 8px;
     font-size: 14px;
-    text-align: center;
-    line-height: 18px;
   }
+}
+
+.info-container {
+  height: 40px;
+  padding-right: 37px;
+  padding-bottom: 32px;
+  padding-left: 38px;
+  text-align: center;
+  background: url(../../img/Ellipse\ 7268.png);
 }
 
 .area-name {
-  width: inherit;
-  text-align: center;
-  font-size: 8px;
-  line-height: 12px;
-  text-align: center;
   color: rgba(255, 255, 255, 0.2);
-
-  @media (min-width: 768px) {
-    font-size: 12px;
-    line-height: 14px;
-  }
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .recipe_closeup {
-  width: auto;
+  width: 200px;
   height: 280px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-radius: 15px;
   background-color: #050505;
-  object-fit: cover;
-
-  @media (min-width: 370px) {
-    width: 200px;
-    border-radius: 15px;
-  }
 
   @media (min-width: 768px) {
     width: 351px;
@@ -252,38 +218,39 @@
   }
 }
 
-.recipe_closeup img {
-  object-fit: cover;
-}
+/* .swiper-pagination {
+  margin-left: auto;
+  margin-right: auto;
+} */
 
-.swiper .swiper-pagination {
-  bottom: -3px;
-  text-align: left;
-  padding-left: 51%;
-
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
   @media (min-width: 370px) {
-    padding-left: 34%;
+    left: -50px;
+    /* margin-left: 32px; */
   }
 
-  @media (min-width: 1280px) {
-    padding-left: 38%;
+  @media (min-width: 768px) {
+    left: -103px;
+  }
+
+  @media (min-width: 1200px) {
+    left: -30px;
   }
 }
-
-.swiper .swiper-pagination-bullet {
-  background: #050505;
-  opacity: 1;
-}
-
-.swiper-pagination-bullet.active {
-  background: #9bb537;
-}
+/* .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  max-width: 390px;
+} */
 
 .order-btn {
   display: inline-flex;
   width: 111px;
-  height: 48px;
+  height: 37px;
   padding: 10px 20px;
+  margin-bottom: 37px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -295,6 +262,7 @@
     height: 45px;
     padding: 14px 28px;
     border-radius: 15px;
+    margin-bottom: 0;
   }
 }
 

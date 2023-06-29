@@ -166,10 +166,7 @@ const closeModalRating = () => {
 
 //лістнери модалки
 refs.recipe.addEventListener("click", (evt) => {
-    if (evt.target.nodeName !== "BUTTON")
-        return;
-
-    fetchRecipesById(evt.target.getAttribute('data-id'))
+    fetchRecipesById(evt.target.attributes["data-id"].value)
         .then((data) => {
             evt.stopPropagation();
             renderModals(data);
