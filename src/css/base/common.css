@@ -26,6 +26,7 @@ body {
     max-width: 1144px;
   }
 }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
