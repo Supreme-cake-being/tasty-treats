@@ -79,7 +79,6 @@ const fetchArea = async () => {
       `${BASE_URL}/areas`
     );
     const areas = response.data.map(area => area.name);
-    console.log(areas);
     return areas;
   } catch (error) {
     console.log(error.message);
@@ -114,7 +113,6 @@ const fetchEvents = async () => {
   try {
     let response = await axios.get(`${BASE_URL}/events`);
     let result = await response.data;
-    console.log(result);
 
     return result;
   } catch (error) {

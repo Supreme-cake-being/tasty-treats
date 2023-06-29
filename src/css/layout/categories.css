@@ -39,6 +39,7 @@
 }
 
 .categories-list {
+  width: 335px;
   height: 198px;
   overflow: scroll;
   overflow-x: hidden;

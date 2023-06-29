@@ -15,6 +15,8 @@ const searchArea = document.querySelector('.select-area');
 const searchTime = document.querySelector('.select-time');
 const allCategoriesBtn = document.querySelector('.categories-btn');
 const categories = document.querySelector('.categories-list');
+const containerWidth = document.querySelector('.container');
+const container = document.querySelector('#tui-pagination-container');
 
 let categoryPlaceHolder;
 let currentPage = 1;
@@ -56,7 +58,7 @@ async function createFilteredMarkup() {
       searchTime.value
     );
 
-    if (response.results === 0) 
+    if (response.results.length === 0)
       return container.classList.add('is-hidden');
 
     pagination.reset(response.totalPages * pageLimit);
@@ -92,8 +94,8 @@ allCategoriesBtn.addEventListener('click', async () => {
     searchTime.value
   );
 
-  if (response.results === 0) 
-      return container.classList.add('is-hidden');
+  if (response.results.length === 0)
+    return container.classList.add('is-hidden');
 
   pagination.reset(response.totalPages * pageLimit);
 
@@ -116,18 +118,21 @@ categories.addEventListener('click', async e => {
     searchTime.value
   );
 
+  console.log(response.totalPages)
+
+  if (response.results.length === 0)
+      return container.classList.add('is-hidden');
+
   pagination.reset(response.totalPages * pageLimit);
 
   createMarkup(response.results);
 });
 
-const containerWidth = document.querySelector('.container');
-
 const getPaginationSettings = () => {
   let pageLimit;
   let visiblePages;
   switch (containerWidth.clientWidth) {
-    case 1280:
+    case 1144:
       pageLimit = 9;
       visiblePages = 3;
       break;
@@ -146,7 +151,6 @@ const getPaginationSettings = () => {
 }
 const { pageLimit, visiblePages } = getPaginationSettings();
 
-const container = document.querySelector('#tui-pagination-container');
 const options = {
   totalItems: 0,
   itemsPerPage: pageLimit,

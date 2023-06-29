@@ -8,8 +8,8 @@
   flex-basis: 70%;
 }
 
-.search-form{
-  margin-bottom: 20px;
+.search-form {
+  margin-bottom: 24px;
 }
 
 .search-list {
@@ -93,6 +93,9 @@
   .search-container {
     margin-top: 80px;
     padding-left: 0px;
+  }
+  .search-form {
+    margin-bottom: 32px;
   }
   .search-list {
     gap: 16px;
