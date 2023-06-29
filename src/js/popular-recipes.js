@@ -86,12 +86,16 @@ function makeMaxLength() {
     if (screenWidth > 767) { // Пороговое значение ширины экрана для перемещения элемента
       const element = document.getElementById('popular-recipes');
       const newParent = document.querySelector('.categories-section');
+      const divContainer = element.querySelector('.container');
+      divContainer.classList.remove('container');
       newParent.appendChild(element);
     }
 
     if (screenWidth < 768) { // Пороговое значение ширины экрана для перемещения элемента
       const element = document.getElementById('popular-recipes');
       const newParent = document.querySelector('main');
+      const divContainer = element.querySelector('div');
+      divContainer.classList.add('container');
       newParent.appendChild(element);
     }
   }
