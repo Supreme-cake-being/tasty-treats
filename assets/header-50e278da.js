@@ -12,7 +12,7 @@
             <img class="card-img" src="${s}" />
             <button class="card-favorites-btn" data-id="${n}" type="button">
                 <svg class="icon-heart" width="22" height="22">
-                    <use href="./img/icons.svg#heart"></use>
+                    <use href="../img/icons.svg/heart"></use>
                 </svg>
             </button>
             <div class="card-info">
