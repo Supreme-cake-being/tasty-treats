@@ -25,7 +25,7 @@ import{b as Ue,a as Ke,c as Ge,d as Je,e as Ze,g as ie,h as Qe}from"./API-8d3416
           </div>
       
     
-    </div>`;document.querySelector(".swiper-wrapper").insertAdjacentHTML("afterbegin",a)}new V(".swiper",{slidesPerView:1,centeredSlides:!0,loop:!0,lazyLoading:!0,spaceBetween:16,keyboard:{enabled:!0},modules:[yi,bi],pagination:{el:".swiper .swiper-pagination",type:"bullets",clickable:!0,bulletActiveClass:!0}})});const xi=document.querySelector(".categories-container"),ze=document.querySelector(".categories-btn"),Si=document.querySelector(".categories-list"),Ti=async()=>{const e=document.querySelector(".categories-list"),i=(await Ke()).map(({name:n})=>`
+    </div>`;document.querySelector(".swiper-wrapper").insertAdjacentHTML("afterbegin",a)}new V(".swiper",{slidesPerView:1,centeredSlides:!0,loop:!0,lazyLoading:!0,spaceBetween:16,keyboard:{enabled:!0},modules:[yi,bi],pagination:{el:".swiper .swiper-pagination",type:"bullets",clickable:!0,bulletActiveClass:"active"}})});const xi=document.querySelector(".categories-container"),ze=document.querySelector(".categories-btn"),Si=document.querySelector(".categories-list"),Ti=async()=>{const e=document.querySelector(".categories-list"),i=(await Ke()).map(({name:n})=>`
               <li class="categories-item">
                 <button class="category-btn" type="button">
                   ${n}
