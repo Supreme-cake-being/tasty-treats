@@ -14,10 +14,10 @@
 
     
     
-    <script type="module" crossorigin src="/tasty-treats/assets/favorites-838be27f.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/header-ca875589.js">
+    <script type="module" crossorigin src="/tasty-treats/assets/favorites-9a022370.js"></script>
+    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/header-4d21bbe2.js">
     <link rel="stylesheet" href="/tasty-treats/assets/header-85c9ffd3.css">
-    <link rel="stylesheet" href="/tasty-treats/assets/favorites-2bd0bda2.css">
+    <link rel="stylesheet" href="/tasty-treats/assets/favorites-78f5fb0f.css">
   </head>
   <body>
     <header class="header">
@@ -72,10 +72,51 @@
       <section class="hero-favotites">
   <div class="container">
     <div class="hero-image">
-      <img src="../../img/favorites/favorites-hero.png" alt="hero image" />
+      <picture>
+        <!-- Desktop screen -->
+        <source
+          media="(min-width: 1280px)"
+          srcset="/tasty-treats/assets/fav-hero-desc@1x-4e210393.webp 1x, /tasty-treats/assets/fav-hero-desc@2x-0ea40aaa.webp 2x"
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 1280px)"
+          srcset="/tasty-treats/assets/fav-hero-desc@1x-ee1d8e75.jpg 1x, /tasty-treats/assets/fav-hero-desc@2x-7bdc4b85.jpg 2x"
+          type="image/jpg"
+        />
+        <!-- Tablet screen -->
+        <source
+          media="(min-width: 768px)"
+          srcset="/tasty-treats/assets/fav-hero-tab@1x-54f54eab.webp 1x, /tasty-treats/assets/fav-hero-tab@2x-d881bfe8.webp 2x"
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcset="/tasty-treats/assets/fav-hero-tab@1x-31d0d939.jpg 1x, /tasty-treats/assets/fav-hero-tab@2x-fd1518cf.jpg 2x"
+          type="image/jpg"
+        />
+        <!-- Mobile screen -->
+        <source
+          media="(max-width: 767px)"
+          srcset="/tasty-treats/assets/fav-hero-mob@1x-da64b33b.webp 1x, /tasty-treats/assets/fav-hero-mob@2x-e391e080.webp 2x"
+          type="image/webp"
+        />
+        <source
+          media="(max-width: 767px)"
+          srcset="/tasty-treats/assets/fav-hero-mob@1x-b64171e9.jpg 1x, /tasty-treats/assets/fav-hero-mob@2x-2b0a0823.jpg 2x"
+          type="image/jpg"
+        />
+
+        <img
+          class="store-img"
+          src="/tasty-treats/assets/fav-hero-mob@1x-b64171e9.jpg"
+          alt="Delicious dish"
+        />
+      </picture>
     </div>
   </div>
 </section>
+
 
       <div class="container">
         <div class="no-data">
