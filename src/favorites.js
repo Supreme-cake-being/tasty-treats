@@ -1,117 +1,198 @@
-import { fetchCategories, fetchRecipes } from './js/service/API';
+import './js/modals';
+import { fetchCategories } from './js/service/API';
+import Pagination from 'tui-pagination';
 
 const refs = {
-    categories: document.querySelector('.categories'),
-    favorites: document.querySelector('.favorites'),
-    noData: document.querySelector('.no-data')
-}
+  categories: document.querySelector('.categories'),
+  favorites: document.querySelector('.favorites'),
+  noData: document.querySelector('.no-data'),
+};
 
-// console.log(refs);
+let selectedCategory;
+let pagination;
+const itemsPerPage = 12;
+
 function renderCategories(categories, favorites) {
-    refs.categories.innerHTML = '';
-    const items = categories
-        .filter((element) => {
-            return favorites.some((favorite) => {
-                return element.name === favorite.category;
-            })
-        })
-        .map((category) => {
-            const item = document.createElement('li')
-            item.textContent = category.name;
-            return item;
-        })
-    refs.categories.append(...items);
+  refs.categories.innerHTML = '';
+  if (!categories) {
+    return;
+  }
+  const filteredCategories = categories.filter(element => {
+    return favorites.some(favorite => {
+      return element.name === favorite.category;
+    });
+  });
+  if (
+    !filteredCategories.some(category => category.name === selectedCategory)
+  ) {
+    selectedCategory = null;
+  }
+  const items = filteredCategories.map(category => {
+    const item = document.createElement('button');
+    item.setAttribute('type', 'button');
+    item.classList.add('categories-btn', 'btn', 'favotites-btn');
+    if (category.name === selectedCategory) {
+      item.classList.add('active');
+    }
+    item.addEventListener('click', () => {
+      pagination.movePageTo(1);
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        renderFavotites(favorites, null);
+        selectedCategory = null;
+        return;
+      }
+      items.forEach(element => {
+        element.classList.remove('active');
+      });
+      item.classList.add('active');
+      renderFavotites(favorites, category.name);
+      selectedCategory = category.name;
+    });
+    item.textContent = category.name;
+    return item;
+  });
+  const allCategories = document.createElement('button');
+  allCategories.classList.add(
+    'categories-btn',
+    'btn',
+    'all-categories',
+    'favotites-btn'
+  );
+  allCategories.textContent = 'All categories';
+  allCategories.addEventListener('click', () => {
+    renderFavotites(favorites, null);
+    selectedCategory = null;
+    items.forEach(element => {
+      element.classList.remove('active');
+    });
+  });
+  refs.categories.append(allCategories, ...items);
 }
 
-function renderFavotites(favorites) {
-    refs.favorites.innerHTML = '';
-    const items = favorites.map((favorite) => {
-        const item = document.createElement('li')
-        item.addEventListener('click', () => {
-            const newFavorites = favorites.filter((element) => {
-                return element._id !== favorite._id;
-            })
-            localStorage.setItem('favorites', JSON.stringify(newFavorites));
-            renderPage();
-        })
-        item.textContent = favorite.title;
-        item.setAttribute('data-id', favorite._id)
-        return item;
-    })
-    refs.favorites.append(...items);
+function renderFavotites(favorites, selectedCategory) {
+  refs.favorites.innerHTML = '';
+  const filteredFavorites = favorites.filter(element => {
+    if (!selectedCategory) {
+      return true;
+    }
+    return element.category === selectedCategory;
+  });
+
+  renderPagination(
+    favorites,
+    filteredFavorites.length,
+    pagination.getCurrentPage()
+  );
+  const items = filteredFavorites
+    .slice(
+      itemsPerPage * (pagination.getCurrentPage() - 1),
+      itemsPerPage * pagination.getCurrentPage()
+    )
+    .map(favorite => {
+      const item = document.createElement('li');
+      item.classList.add('card-recipe');
+      item.innerHTML = renderCard(favorite);
+      item
+        .querySelector('.card-favorites-btn')
+        .addEventListener('click', () => {
+          const newFavorites = favorites.filter(element => {
+            return element._id !== favorite._id;
+          });
+          localStorage.setItem('favorites', JSON.stringify(newFavorites));
+          renderPage();
+        });
+      return item;
+    });
+  refs.favorites.append(...items);
 }
 
 function renderPage() {
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
-    if (!favorites) {
-        refs.noData.style.display = 'flex';   
-    } else (
-        fetchCategories().then((categories) => {
-            renderFavotites(favorites);
-            renderCategories(categories, favorites);
-        })
-    )
+  const favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (!favorites || !favorites.length) {
+    refs.noData.style.display = 'flex';
+    document.querySelector('.hero-favotites').style.display = 'none';
+    document.getElementById('tui-pagination-container').style.display = 'none';
+    renderFavotites(favorites);
+    renderCategories(null, favorites);
+  } else
+    fetchCategories().then(categories => {
+      renderCategories(categories, favorites);
+      renderPagination(favorites, 100, 1);
+      renderFavotites(favorites, selectedCategory);
+    });
 }
 
-function makeFakeFavorites() {
-    localStorage.setItem('favorites', JSON.stringify([
-    {
-        "_id": "6462a8f74c3d0ddd28897fc1",
-        "title": "Chocolate Gateau",
-        "category": "Dessert",
-        "area": "French",
-        "description": "A French dessert consisting of layers of chocolate sponge cake and chocolate ganache, typically topped with chocolate glaze and chocolate decorations.",
-        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560403/zyahxajhkglf8sisiqlh.jpg",
-        "time": "75",
-        "rating": 3
-    },
-    {
-        "_id": "6462a8f74c3d0ddd28897fbc",
-        "title": "Irish stew",
-        "category": "Beef",
-        "area": "Irish",
-        "description": "A traditional Irish dish made with lamb, potatoes, carrots, onions, and herbs, cooked in a broth or gravy.",
-        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/kknfjaqupiqhufj5kspx.jpg",
-        "time": "160",
-        "rating": 3
-    },
-    {
-        "_id": "6462a8f74c3d0ddd28897fb9",
-        "title": "Lamb tomato and sweet spices",
-        "category": "Lamb",
-        "area": "Moroccan",
-        "description": "A Moroccan-inspired dish made with lamb, tomatoes, onions, and spices (such as cinnamon, ginger, and cumin), typically served with couscous or bread.",
-        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560405/zlxxkd81sadgwzbugyzl.jpg",
-        "time": "90",
-        "rating": 1
-    },
-    {
-        "_id": "6462a8f74c3d0ddd28897fdf",
-        "title": "Lamb Rogan josh",
-        "category": "Lamb",
-        "area": "Indian",
-        "description": "A spicy lamb dish from Kashmiri cuisine, flavored with a blend of aromatic spices and yogurt.",
-        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560404/dyf7xtdw6aoggvc8ymuk.jpg",
-        "time": "90",
-        "rating": 5
-    },
-    {
-        "_id": "6462a8f74c3d0ddd28897fbf",
-        "title": "Teriyaki Chicken Casserole",
-        "category": "Chicken",
-        "area": "Japanese",
-        "description": "A Japanese-inspired casserole made with chicken, teriyaki sauce, rice, and vegetables.",
-        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/g7gww5fdeu7kjti0fk7s.jpg",
-        "time": "75",
-        "rating": 1
+function renderCard({ _id, preview, title, description, rating }) {
+  const starRating = [];
+  for (let i = 0; i < 5; i++) {
+    if (i < Math.floor(rating)) {
+      starRating.push(`<li>
+                          <svg class="card-star" width="18" height="18">
+                              <use href="./img/icons.svg#icon-star-colored"></use>
+                          </svg>
+                      </li>`);
+    } else {
+      starRating.push(`<li>
+                          <svg class="card-star" width="18" height="18">
+                              <use href="./img/icons.svg#icon-star-no-colored"></use>
+                          </svg>
+                      </li>`);
     }
-]));
+  }
+  return `
+            <img class="card-img" src="${preview}" />
+            <button class="card-favorites-btn" data-id="${_id}" type="button">
+                <svg class="icon-heart" width="22" height="22">
+                    <use href="./img/icons.svg#heart"></use>
+                </svg>
+            </button>
+            <div class="card-info">
+                <h3 class="card-title">${title}</h3>
+                <p class="card-description">${description}</p>
+                <div class="card-additional-info">
+                    <p>${rating}</p>
+                    <ul class="card-rating">${starRating.join('')}</ul>
+                    <button type="button" class="card-button" data-id="${_id}">See recipe</button>
+                </div>
+            </div>
+        `;
 }
 
-fetchRecipes().then((recipes) => {
-    console.log(recipes);
-})
+function renderPagination(favorites, totalItems, page) {
+  pagination = new Pagination(
+    document.getElementById('tui-pagination-container'),
+    {
+      page: page,
+      visiblePages: 3,
+      itemsPerPage: itemsPerPage,
+      totalItems: totalItems,
+      firstItemClassName: 'tui-first-child',
+      lastItemClassName: 'tui-last-child',
+      template: {
+        page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+        currentPage:
+          '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        moveButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}"></span>' +
+          '</a>',
+        disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}"></span>' +
+          '</span>',
+        moreButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+          '<span class="tui-ico-ellip">...</span>' +
+          '</a>',
+      },
+    }
+  );
+  pagination.on('afterMove', event => {
+    renderFavotites(favorites, selectedCategory);
+  });
+}
 
-makeFakeFavorites();
+// renderPagination();
 
 renderPage();
