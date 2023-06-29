@@ -1,74 +1,227 @@
-// import debounce from 'lodash.debounce';
+import {
+  fetchArea,
+  fetchIngredient,
+  fetchRecipesByFilters,
+} from './service/API';
+import Pagination from 'tui-pagination';
+import debounce from 'lodash.debounce';
+import { createMarkup } from './create-markup';
 
-// const inputEl = document.querySelector('.input');
-// const galleryEl = document.querySelector('.gallery');
-// let fetchTimeout;
+const gallery = document.querySelector('.gallery-list');
+const searchForm = document.querySelector('.search-form');
+const searchName = document.querySelector('.input-search');
+const searchIngredients = document.querySelector('.select-ingredients');
+const searchArea = document.querySelector('.select-area');
+const searchTime = document.querySelector('.select-time');
+const allCategoriesBtn = document.querySelector('.categories-btn');
+const categories = document.querySelector('.categories-list');
 
-// function createGallery(data, keyword) {
-//   galleryEl.innerHTML = '';
+let categoryPlaceHolder;
+let currentPage = 1;
 
-//   if (data && data.length > 0) {
-//     const card = data
-//       .filter(
-//         item =>
-//           item.title && item.title.toLowerCase().includes(keyword.toLowerCase())
-//       )
-//       .map(recipe => {
-//         return `<div class="card-recipe" style="background-image: url(${recipe.preview})">
-//                   <svg class="card-heart"
-//                     src="./images/heart-card.svg"
-//                     width="22"
-//                     height="22" />
-//                   <h3 class="card-title">${recipe.title}</h3>
-//                   <p class="card-description">${recipe.description}</p>
-//                   <button type="button" class="card-button">
-//                     See recipe
-//                   </button>
-//                 </div>`;
-//       })
-//       .join('');
-//     galleryEl.innerHTML += card;
-//   } else {
-//     console.log('Немає даних для виведення заголовків');
-//   }
-// }
+(async function addSelectAreas() {
+  try {
+    const areas = await fetchArea();
+    const markup = areas.map(area => `<option>${area}</option>`).join('');
+    searchArea.insertAdjacentHTML('beforeend', markup);
+  } catch (error) {
+    console.log(error.message);
+  }
+})();
+(async function addSelectIngredients() {
+  try {
+    const ingredients = await fetchIngredient();
+    const { ingredientId, ingredientName } = ingredients;
+    for (let i = 0; i < ingredientId.length; i++) {
+      const optionElement = document.createElement('option');
+      optionElement.value = ingredientId[i];
+      optionElement.text = ingredientName[i];
+      searchIngredients.appendChild(optionElement);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+})();
 
-// // Функція для виконання запиту на отримання рецептів за заданим ключовим словом
-// async function fetchDataAndPrintTitles(keyword) {
-//   const data = await fetchAllRecipes();
-//   createGallery(data, keyword);
-// }
+async function createFilteredMarkup() {
+  try {
+    gallery.innerHTML = '';
 
-// // Використовуємо debounce для затримки виконання функції fetchDataAndPrintTitles
-// // після зміни значення в input протягом 300 мс
-// const debouncedFetchDataAndPrintTitles = debounce(fetchDataAndPrintTitles, 300);
+    const response = await fetchRecipesByFilters(
+      currentPage,
+      categoryPlaceHolder,
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value
+    );
 
-// // Додаємо обробник події input для виклику функції з пошуком і виводом заголовків.
-// inputEl.addEventListener('input', () => {
-//   const keyword = inputEl.value.trim();
+    if (response.results === 0) 
+      return container.classList.add('is-hidden');
 
-//   clearTimeout(fetchTimeout); // Скидаємо попередній таймер запиту
+    pagination.reset(response.totalPages * pageLimit);
 
-//   if (keyword.length > 0) {
-//     fetchTimeout = setTimeout(() => {
-//       debouncedFetchDataAndPrintTitles(keyword);
-//     }, 300);
-//   } else {
-//     console.log('Введіть ключове слово для пошуку');
-//     clearTimeout(fetchTimeout); // Скидаємо таймер запиту, якщо поле вводу порожнє
-//     galleryEl.innerHTML = '';
-//   }
-// });
+    createMarkup(response.results);
+    container.classList.remove('is-hidden');
+  } catch (error) {
+    console.log(error);
+  }
+}
+// createFilteredMarkup();
 
+searchForm.addEventListener('submit', preventDefault);
+function preventDefault(e) {
+  e.preventDefault();
+}
 
-// const searchForm = document.querySelector('.search-form');
-// const gallery = document.querySelector('.gallery');
+searchIngredients.addEventListener('change', createFilteredMarkup);
+searchArea.addEventListener('change', createFilteredMarkup);
+searchTime.addEventListener('change', createFilteredMarkup);
+searchName.addEventListener('input', debounce(createFilteredMarkup, 300));
 
-// searchForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-// });
+allCategoriesBtn.addEventListener('click', async () => {
+  gallery.innerHTML = '';
+  categoryPlaceHolder = '';
 
+  const response = await fetchRecipesByFilters(
+    currentPage,
+    categoryPlaceHolder,
+    searchName.value.trim(),
+    searchIngredients.value,
+    searchArea.value,
+    searchTime.value
+  );
 
-// searchForm.addEventListener('input', (e) => {
+  if (response.results === 0) 
+      return container.classList.add('is-hidden');
 
-// });
+  pagination.reset(response.totalPages * pageLimit);
+
+  createMarkup(response.results);
+  container.classList.remove('is-hidden');
+});
+
+categories.addEventListener('click', async e => {
+  if (e.target.nodeName !== 'BUTTON') return;
+
+  gallery.innerHTML = '';
+
+  categoryPlaceHolder = e.target.textContent.trim();
+  const response = await fetchRecipesByFilters(
+    currentPage,
+    categoryPlaceHolder,
+    searchName.value.trim(),
+    searchIngredients.value,
+    searchArea.value,
+    searchTime.value
+  );
+
+  pagination.reset(response.totalPages * pageLimit);
+
+  createMarkup(response.results);
+});
+
+const containerWidth = document.querySelector('.container');
+
+const getPaginationSettings = () => {
+  let pageLimit;
+  let visiblePages;
+  switch (containerWidth.clientWidth) {
+    case 1280:
+      pageLimit = 9;
+      visiblePages = 3;
+      break;
+    
+    case 768:
+      pageLimit = 8;
+      visiblePages = 3;
+      break;
+    
+    default:
+      pageLimit = 6;
+      visiblePages = 2;
+      break;
+  }
+  return { pageLimit, visiblePages };
+}
+const { pageLimit, visiblePages } = getPaginationSettings();
+
+const container = document.querySelector('#tui-pagination-container');
+const options = {
+  totalItems: 0,
+  itemsPerPage: pageLimit,
+  visiblePages: visiblePages,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+}
+
+const pagination = new Pagination(container, options);
+
+const page = pagination.getCurrentPage();
+
+const onRenderPage = async (page) => {
+  try {
+    const response = await fetchRecipesByFilters(
+      page,
+      categoryPlaceHolder,
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value
+    );
+
+    
+    if (response.results.length === 0)
+      return container.classList.add('is-hidden');
+
+    createMarkup(response.results);
+    container.classList.remove('is-hidden');
+
+    pagination.reset(response.totalPages * pageLimit);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+onRenderPage(page);
+
+const createPagination = async (event) => {
+  try {
+    gallery.innerHTML = '';
+
+    const currentPage = event.page;
+
+    const response = await fetchRecipesByFilters(
+      currentPage,
+      categoryPlaceHolder,
+      searchName.value.trim(),
+      searchIngredients.value,
+      searchArea.value,
+      searchTime.value
+    );
+
+    createMarkup(response.results);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+pagination.on('afterMove', createPagination);
