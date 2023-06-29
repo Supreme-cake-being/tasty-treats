@@ -12,55 +12,13 @@
     />
 
     
-    <script type="module" crossorigin src="/tasty-treats/assets/index-5b86746f.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/header-3c783956.js">
-    <link rel="stylesheet" href="/tasty-treats/assets/header-30adede6.css">
+    <script type="module" crossorigin src="/tasty-treats/assets/index-5cc9104a.js"></script>
+    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/API-4d3c3e7a.js">
+    <link rel="stylesheet" href="/tasty-treats/assets/API-c830dca8.css">
   </head>
   <body>
     <header class="header">
-  <div class="header_div container">
-    <nav class="header_nav">
-      <ul class="header_list list">
-        <li><a href="./index.html" class="header_link">Home</a></li>
-        <li>
-          <a href="./favorites.html" class="header_link">Favorites</a>
-        </li>
-      </ul>
-    </nav>
-    <a href="./index.html" class="header_logo"
-      ><span class="header_logo-green">tasty</span>treats.</a
-    >
-    <div class="header_icons">
-      <a href="tel:+380730000000">
-        <svg width="24" height="24" class="header_icon">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#cart"></use>
-        </svg>
-        <!-- <img src="./img/shopping-cart-03.svg" width="24px" height="24px" class="header_icon"> -->
-      </a>
-      <button type="button" class="header_burger-btn menu-open">
-        <svg width="32" height="32">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#burger"></use>
-        </svg>
-        <!-- <img src="./img/burger.svg" class="header_burger-icon" width="32" height="32"> -->
-      </button>
-      <div class="switch-btn switch-on"></div>
-    </div>
-  </div>
-  <div class="menu is-hidden">
-    <div class="container">
-      <button class="menu-close" type="button">
-        <svg width="32" height="32" class="menu-close_icon">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#x-white"></use>
-        </svg>
-        <!-- <img src="./img/menu-close.svg" width="20" height="20"> -->
-      </button>
-      <ul class="menu_list">
-        <li class="menu_item"><a href="./index.html">Home</a></li>
-        <li class="menu_item"><a href="./favorites.html">Favorites</a></li>
-      </ul>
-      <div class="switch-btn switch-on modal-switch-btn"></div>
-    </div>
-  </div>
+  <nav class="nav"></nav>
 </header>
 
 
@@ -90,12 +48,10 @@
   </div>
 </section>
 
-      <div class="layout-container container">
+      <div class="layout-container">
         <div class="categories-section">
           <div class="categories-container">
-  <button type="button" class="categories-btn active btn">
-    All categories
-  </button>
+  <button type="button" class="categories-btn btn">All categories</button>
   <ul class="categories-list">
     <!-- <li class="categories-item">
         <button type="button" class="categories-list-btn">1</button>
@@ -104,81 +60,48 @@
 </div>
 
         </div>
+
         <div class="search-container">
           <form class="search-form" id="search-form">
   <ul class="search-list">
     <li class="search-item first">
       <label class="label">Search</label>
       <div class="input-container">
-        <!-- <span class="search-icon"></span> -->
-        <svg width="18" height="18" class="search-icon">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#search"></use>
-        </svg>
+        <span class="search-icon"></span>
         <input class="input-search" type="text" placeholder="Enter Text" />
       </div>
     </li>
 
     <li class="search-item second">
       <label class="label">Time</label>
-      <select class="select-time">
-        <option value="">Any</option>
-        <option value="5">5 min</option>
-        <option value="10">10 min</option>
-        <option value="15">15 min</option>
-        <option value="20">20 min</option>
-        <option value="25">25 min</option>
-        <option value="30">30 min</option>
-        <option value="35">35 min</option>
-        <option value="40">40 min</option>
-        <option value="45">45 min</option>
-        <option value="50">50 min</option>
-        <option value="55">55 min</option>
-        <option value="60">60 min</option>
-        <option value="65">65 min</option>
-        <option value="70">70 min</option>
-        <option value="75">75 min</option>
-        <option value="80">80 min</option>
-        <option value="85">85 min</option>
-        <option value="90">90 min</option>
-        <option value="95">95 min</option>
-        <option value="100">100 min</option>
-        <option value="105">105 min</option>
-        <option value="110">110 min</option>
-        <option value="115">115 min</option>
-        <option value="120">120 min</option>
-        <option value="2940">2940 min</option>
-      </select>
+      <select class="select-time"></select>
     </li>
     <li class="search-item third">
       <label class="label">Area</label>
-      <select class="select-area">
-        <option value="">Any</option>
-      </select>
+      <select class="select-area"></select>
     </li>
 
     <li class="search-item fourth">
       <label class="label">Ingredients</label>
-      <select class="select-ingredients">
-        <option value="">Any</option>
-      </select>
+      <select class="select-ingredients"></select>
     </li>
   </ul>
 </form>
 
-          <div class="gallery">
-            <ul class="gallery-list"></ul>
-          </div>
         </div>
-      </div>
-      <div id="image-container"></div>
+
+        <div class="gallery">
+          <ul class="gallery-list"></ul>
+          <div id="image-container"></div>
 <div id="tui-pagination-container" class="tui-pagination is-hidden"></div>
 
-      <div class="popular-recipes" id="popular-recipes">
-    <div class="container">
-        <h2 class="popular-recipes-title">Popular Recipes</h2>
-        <ul class="popular-recipes-list" id="recipes">
-        </ul>
-    </div>
+        </div>
+      </div>
+
+      <div class="popular-recipes">
+    <h2 class="popular-recipes-title">Popular Recipes</h2>
+    <ul class="popular-recipes-list" id="recipes">
+    </ul>
 </div>
     </main>
     <div class="modal-overlay">
@@ -201,58 +124,7 @@
     </div>
     <ul class="modal-tag"></ul>
     <p class="modal-recipe-desk custom-scrollbar"></p>
-    <div class="modal-btns">
-      <button class="modal-fav-btn favorites-btn" type="button"></button>
-      <button class="modal-rating-btn" type="button">Give a rating</button>
-    </div>
-  </div>
-
-  <div class="modal-rating">
-    <svg class="modal-close">
-      <use href="../img/icons.svg#icon-close-big"></use>
-    </svg>
-    <h3 class="modal-raiting-head">Rating</h3>
-    <div class="modal-rating-rewiews">
-      <p class="modal-rating-raiting">1</p>
-      <!-- <div class="modal-raiting-star"> -->
-      <form>
-        <fieldset>
-          <span class="star-cb-group modal-staring">
-            <input type="radio" id="rating-5" name="rating" value="5" />
-            <label for="rating-5">5</label>
-            <input type="radio" id="rating-4" name="rating" value="4" />
-            <label for="rating-4">4</label>
-            <input type="radio" id="rating-3" name="rating" value="3" />
-            <label for="rating-3">3</label>
-            <input type="radio" id="rating-2" name="rating" value="2" />
-            <label for="rating-2">2</label>
-            <input
-              type="radio"
-              id="rating-1"
-              name="rating"
-              value="1"
-              checked="checked"
-            />
-            <label for="rating-1">1</label>
-          </span>
-        </fieldset>
-      </form>
-      <!-- <input type="radio" name="star" value="4" />
-        <input type="radio" name="star" value="5" /> -->
-      <!-- </div> -->
-    </div>
-    <p class="modal-rating-desk"></p>
-    <form class="form-rating-rate" action="">
-      <input
-        class="modal-rate-input"
-        placeholder="Enter email"
-        type="email"
-        name="email"
-        pattern="[a-z, A-Z, 0-9, ._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        required
-      />
-      <button class="modal-rate-btn" type="submit">Send</button>
-    </form>
+    <button class="modal-fav-btn favorites-btn" type="button"></button>
   </div>
 </div>
 

@@ -14,88 +14,35 @@
 
     
     
-    <script type="module" crossorigin src="/tasty-treats/assets/favorites-5493cd3a.js"></script>
-    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/header-3c783956.js">
-    <link rel="stylesheet" href="/tasty-treats/assets/header-30adede6.css">
-    <link rel="stylesheet" href="/tasty-treats/assets/favorites-2bd0bda2.css">
+    <script type="module" crossorigin src="/tasty-treats/assets/favorites-2b797790.js"></script>
+    <link rel="modulepreload" crossorigin href="/tasty-treats/assets/API-4d3c3e7a.js">
+    <link rel="stylesheet" href="/tasty-treats/assets/API-c830dca8.css">
+    <link rel="stylesheet" href="/tasty-treats/assets/favorites-116f04a8.css">
   </head>
   <body>
+    
     <header class="header">
-  <div class="header_div container">
-    <nav class="header_nav">
-      <ul class="header_list list">
-        <li><a href="./index.html" class="header_link">Home</a></li>
-        <li>
-          <a href="./favorites.html" class="header_link">Favorites</a>
-        </li>
-      </ul>
-    </nav>
-    <a href="./index.html" class="header_logo"
-      ><span class="header_logo-green">tasty</span>treats.</a
-    >
-    <div class="header_icons">
-      <a href="tel:+380730000000">
-        <svg width="24" height="24" class="header_icon">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#cart"></use>
-        </svg>
-        <!-- <img src="./img/shopping-cart-03.svg" width="24px" height="24px" class="header_icon"> -->
-      </a>
-      <button type="button" class="header_burger-btn menu-open">
-        <svg width="32" height="32">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#burger"></use>
-        </svg>
-        <!-- <img src="./img/burger.svg" class="header_burger-icon" width="32" height="32"> -->
-      </button>
-      <div class="switch-btn switch-on"></div>
-    </div>
-  </div>
-  <div class="menu is-hidden">
-    <div class="container">
-      <button class="menu-close" type="button">
-        <svg width="32" height="32" class="menu-close_icon">
-          <use href="/tasty-treats/assets/icons-bd914d62.svg#x-white"></use>
-        </svg>
-        <!-- <img src="./img/menu-close.svg" width="20" height="20"> -->
-      </button>
-      <ul class="menu_list">
-        <li class="menu_item"><a href="./index.html">Home</a></li>
-        <li class="menu_item"><a href="./favorites.html">Favorites</a></li>
-      </ul>
-      <div class="switch-btn switch-on modal-switch-btn"></div>
-    </div>
-  </div>
+  <nav class="nav"></nav>
 </header>
 
 
     <!-- Path to images as from index.html file -->
     <main>
-      <section class="hero-favotites">
-  <div class="container">
-    <div class="hero-image">
-      <img src="../../img/favorites/favorites-hero.png" alt="hero image" />
-    </div>
-  </div>
-</section>
-
-      <div class="container">
-        <div class="no-data">
-          <img class="no-data-img" src="data:image/png;base64,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" alt="no data" />
-          <p>
-            It appears that you haven't added any recipes to your favorites yet.
-            To get started, you can add recipes that you like to your favorites
-            for easier access in the future.
-          </p>
-        </div>
-
-        <!-- Categories list -->
-        <ul class="categories"></ul>
-        <!-- Favorites list -->
-        <div class="gallery favorites-gallery">
-          <ul class="favorites gallery-list"></ul>
-        </div>
+      
+      <div class="no-data">
+        <img class="no-data-img" src="data:image/png;base64,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" alt="no data">
+        <p>It appears that you haven't added any recipes to your favorites yet. To get started, you can add recipes that you like to your favorites for easier access in the future.</p>
       </div>
-      <div id="image-container"></div>
-<div id="tui-pagination-container" class="tui-pagination is-hidden"></div>
+      <!-- Categories list -->
+      <ul class="categories">
+       
+      </ul>
+      <!-- Favorites list -->
+      <ul class="favorites">
+       
+      </ul>
+
+      
 
       <div class="modal-overlay">
   <div class="modal">
@@ -117,64 +64,12 @@
     </div>
     <ul class="modal-tag"></ul>
     <p class="modal-recipe-desk custom-scrollbar"></p>
-    <div class="modal-btns">
-      <button class="modal-fav-btn favorites-btn" type="button"></button>
-      <button class="modal-rating-btn" type="button">Give a rating</button>
-    </div>
-  </div>
-
-  <div class="modal-rating">
-    <svg class="modal-close">
-      <use href="../img/icons.svg#icon-close-big"></use>
-    </svg>
-    <h3 class="modal-raiting-head">Rating</h3>
-    <div class="modal-rating-rewiews">
-      <p class="modal-rating-raiting">1</p>
-      <!-- <div class="modal-raiting-star"> -->
-      <form>
-        <fieldset>
-          <span class="star-cb-group modal-staring">
-            <input type="radio" id="rating-5" name="rating" value="5" />
-            <label for="rating-5">5</label>
-            <input type="radio" id="rating-4" name="rating" value="4" />
-            <label for="rating-4">4</label>
-            <input type="radio" id="rating-3" name="rating" value="3" />
-            <label for="rating-3">3</label>
-            <input type="radio" id="rating-2" name="rating" value="2" />
-            <label for="rating-2">2</label>
-            <input
-              type="radio"
-              id="rating-1"
-              name="rating"
-              value="1"
-              checked="checked"
-            />
-            <label for="rating-1">1</label>
-          </span>
-        </fieldset>
-      </form>
-      <!-- <input type="radio" name="star" value="4" />
-        <input type="radio" name="star" value="5" /> -->
-      <!-- </div> -->
-    </div>
-    <p class="modal-rating-desk"></p>
-    <form class="form-rating-rate" action="">
-      <input
-        class="modal-rate-input"
-        placeholder="Enter email"
-        type="email"
-        name="email"
-        pattern="[a-z, A-Z, 0-9, ._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        required
-      />
-      <button class="modal-rate-btn" type="submit">Send</button>
-    </form>
+    <button class="modal-fav-btn favorites-btn" type="button"></button>
   </div>
 </div>
 
     </main>
 
-    
     
   </body>
 </html>
