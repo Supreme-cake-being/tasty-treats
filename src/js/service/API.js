@@ -29,18 +29,62 @@ const fetchRecipesByCategory = async (categoryName) => {
   }
 }
 
+const fetchRecipesByFilters = async(currentPage, categoryName, keyword, ingredientName, areaName, selectedTime) => {
+  try {
+    let perPageLocal;
+
+    if (window.innerWidth >= 1280) {
+      perPageLocal = 9;
+    } else if (window.innerWidth >= 768) {
+      perPageLocal = 8;
+    } else {
+      perPageLocal = 6;
+    }
+    const response = await axios.get(
+      `${BASE_URL}/recipes`, {
+        params: {
+          page: currentPage,
+          limit: perPageLocal,
+          category: categoryName,
+          title: keyword,
+          ingredient: ingredientName,
+          area: areaName,
+          time: selectedTime,
+        }
+      }
+    );
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 const fetchIngredient = async () => {
   try {
     const response = await axios.get(
       `${BASE_URL}/ingredients`
     );
-    const ingredients = response.map(ingredient => ingredient.name);
-    console.log(ingredients);
-    return ingredients;
+    const ingredientName = response.data.map(ingredient => ingredient.name);
+    const ingredientId = response.data.map(ingredient => ingredient._id)
+    return {ingredientName, ingredientId};
   } catch (error) {
     console.log(error.message);
   }
 };
+
+const fetchArea = async () => {
+  try{
+    const response = await axios.get(
+      `${BASE_URL}/areas`
+    );
+    const areas = response.data.map(area => area.name);
+    console.log(areas);
+    return areas;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 const fetchCategories = async () => {
   try {
@@ -90,4 +134,4 @@ const fetchPopularRecipes = async () => {
   }
 }
 
-export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchCategories, fetchRecipesById, fetchEvents, fetchPopularRecipes };
+export { fetchRecipes, fetchRecipesByCategory, fetchIngredient, fetchArea, fetchRecipesByFilters, fetchCategories, fetchRecipesById, fetchEvents, fetchPopularRecipes };

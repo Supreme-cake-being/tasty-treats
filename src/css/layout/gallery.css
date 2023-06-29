@@ -1,29 +1,27 @@
-.gallery {
-  list-style: none;
-
+.gallery-list {
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  gap: 20px;
 }
 
-/* @media screen and (min-width: 768px) {
-  .gallery {
+@media screen and (min-width: 768px) {
+  .gallery-list {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 16px;
     row-gap: 16px;
 
     margin-top: 32px;
+    padding-left: 0;
   }
-} */
+}
 
 .card-recipe {
-  position: relative;
-
   width: 335px;
-
-  padding: 0, 16px, 16px, 16px;
-
+  height: 287px;
+  position: relative;
+  /* margin: 0px auto 20px auto; */
   border-radius: 15px;
   background-image: linear-gradient(
     0.94deg,
@@ -33,13 +31,17 @@
 }
 
 .card-img {
-  width: 100%;
+  position: relative;
 
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
   border-radius: 15px;
   object-fit: cover;
 }
 
-.favorites-btn {
+.card-favorites-btn {
   position: absolute;
 
   top: 16px;
@@ -66,9 +68,11 @@
 }
 
 .card-info {
+  /* width: inherit; */
   position: absolute;
-  left: 16px;
-  bottom: 16px;
+  padding: 0px 16px 16px 16px;
+  margin-bottom: -8px;
+  bottom: 8px;
 
   color: var(--cards-text);
 }
@@ -84,13 +88,14 @@
 
 .card-description {
   height: 32px;
-  width: 303px;
 
   margin-bottom: 16px;
 
-  text-overflow: ellipsis;
   overflow: hidden;
-  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
   font-size: 12px;
   line-height: 1.33;
@@ -125,8 +130,25 @@
 .card-rating {
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
 .card-star {
   fill: #f8f8f81a;
+}
+
+@media screen and (min-width: 768px) {
+  .card-recipe {
+    width: 240px;
+    height: 264px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card-recipe {
+    width: 250px;
+    height: 287px;
+    /* margin: 0px 15px 30px 0px; */
+  }
 }

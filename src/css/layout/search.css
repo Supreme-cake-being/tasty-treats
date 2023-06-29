@@ -5,6 +5,11 @@
 .search-container {
   padding-left: 16px;
   padding-right: 16px;
+  flex-basis: 70%;
+}
+
+.search-form{
+  margin-bottom: 20px;
 }
 
 .search-list {
@@ -53,13 +58,11 @@
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  background-image: url(/images/search.svg);
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .input-search {
   padding-left: 48px;
+  width: 100%;
 }
 
 .input-container {
