@@ -73,9 +73,3 @@
     min-width: 258px;
   }
 }
-
-@media screen and (min-width: 1280px) {
-  .container.favorit-container {
-    max-width: 1144px;
-  }
-}
