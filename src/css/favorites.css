@@ -1,3 +1,7 @@
+.hero-favotites {
+  margin-bottom: 40px;
+}
+
 .in-favorites {
   margin-top: 40px;
   margin-bottom: 24px;
@@ -25,9 +29,10 @@
 
 .categories {
   display: flex;
-  flex-direction: row;
-  column-gap: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: flex-start;
+  margin-bottom: 32px;
 }
 
 .categories button.active {
@@ -47,9 +52,11 @@
   }
 }
 
-.favorites-gallery {
-  display: flex;
-  flex-wrap: wrap;
+.favotites-btn {
+  padding: 14px 18px;
+  margin-bottom: 0;
 }
 
-
+.favorites-gallery {
+  margin: 0;
+}
