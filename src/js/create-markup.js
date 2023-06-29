@@ -14,14 +14,14 @@ export const createMarkup = (array) => {
             if (i < Math.floor(rating)) {    
                 starRating.push(`<li>
                                     <svg class="card-star" width="18" height="18">
-                                        <use href="./img/icons.svg#icon-star-colored"></use>
+                                        <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-colored"></use>
                                     </svg>
                                 </li>`);
             }
             else {
                 starRating.push(`<li>
                                     <svg class="card-star" width="18" height="18">
-                                        <use href="./img/icons.svg#icon-star-no-colored"></use>
+                                        <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-no-colored"></use>
                                     </svg>
                                 </li>`);
             }
