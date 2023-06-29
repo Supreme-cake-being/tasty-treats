@@ -4,8 +4,23 @@ import { createMarkup } from "./create-markup";
 
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
 
-const containerWidth = document.querySelector('.container');
+const fetchRecipes = async (page) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/recipes`, {
+        params: {
+          page: page,
+        }
+      }
+    );
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
+const containerWidth = document.querySelector('.container');
 const getPaginationSettings = () => {
   let pageLimit;
   let visiblePages;
@@ -29,47 +44,29 @@ const getPaginationSettings = () => {
 }
 const { pageLimit, visiblePages } = getPaginationSettings();
 
-const fetchRecipes = async (page) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/recipes`, {
-        params: {
-          page: page,
-          limit: pageLimit,
-        }
-      }
-    );
-    const { data } = response;
-    return data;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
 const container = document.querySelector('#tui-pagination-container');
 const options = {
   totalItems: 0,
   itemsPerPage: pageLimit,
   visiblePages: visiblePages,
   page: 1,
-  centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
-    page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 }
