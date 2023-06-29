@@ -91,7 +91,7 @@ function renderFavotites(favorites, selectedCategory) {
     )
     .map(favorite => {
       const item = document.createElement('li');
-      item.classList.add('card-recipe');
+      item.classList.add('card-recipe', 'favorit-recipe');
       item.innerHTML = renderCard(favorite);
       item
         .querySelector('.card-favorites-btn')
@@ -111,7 +111,7 @@ function renderPage() {
   const favorites = JSON.parse(localStorage.getItem('favorites'));
   if (!favorites || !favorites.length) {
     refs.noData.style.display = 'flex';
-    document.querySelector('.hero-favotites').style.display = 'none';
+    // document.querySelector('.hero-favotites').style.display = 'none';
     document.getElementById('tui-pagination-container').style.display = 'none';
     renderFavotites(favorites);
     renderCategories(null, favorites);

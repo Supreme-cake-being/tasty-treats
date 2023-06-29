@@ -60,3 +60,26 @@
 .favorites-gallery {
   margin: 0;
 }
+
+/* .favorites.gallery-list (
+
+) */
+
+@media screen and (min-width: 768px) {
+  .card-recipe.favorit-recipe {
+    width: 224px;
+    height: 244px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card-recipe.favorit-recipe {
+    min-width: 258px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container.favorit-container {
+    max-width: 1144px;
+  }
+}
