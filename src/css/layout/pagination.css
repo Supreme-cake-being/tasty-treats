@@ -119,6 +119,10 @@
   margin: 0;
 }
 
+.tui-page-btn.tui-page.tui-last-child {
+  margin: 0;
+}
+
 @media screen and (min-width: 768px) {
   .tui-first,
   .tui-next {
