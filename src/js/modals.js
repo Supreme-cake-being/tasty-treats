@@ -6,15 +6,15 @@ import { createMarkup } from "./create-markup";
 //console.log(data);
 //// заглушка для відпрацювання модалки
 
-// const gallery = document.querySelector('.gallery');
-//  const fetch = async () => {
-//     gallery.innerHTML = '';
-//     // const pageLimit = getPageLimit();
-//     const recipes = await fetchRecipes();
-//     const { results } = recipes;
-//   createMarkup(results);
-// }
-// fetch();
+const gallery = document.querySelector('.gallery');
+ const fetch = async () => {
+    gallery.innerHTML = '';
+    // const pageLimit = getPageLimit();
+    const recipes = await fetchRecipes();
+    const { results } = recipes;
+  createMarkup(results);
+}
+fetch();
 
 ////
 
@@ -27,16 +27,22 @@ const refs = {
     recipeTags: document.querySelector(".modal-tag"),
     recipeIngredients: document.querySelector(".modal-ingredients"),
     recipeStarRating: document.querySelector(".modal-star-raiting"),
-    recipe: document.querySelector(".gallery"),
+    recipe: document.querySelector(".gallery-list"),
     overlay: document.querySelector(".modal-overlay"),
     modal: document.querySelector(".modal"),
+    modalRating: document.querySelector(".modal-rating"),
     favBtn: document.querySelector(".modal-fav-btn"),
     closeModalBtn: document.querySelector(".modal-close"),
+    ratingBtn: document.querySelector(".modal-rating-btn"),
+    ratingDesc: document.querySelector(".modal-rating-desk"),
+    submitRatingBth: document.querySelector(".modal-rate-btn"),
+    submitRatingEmail: document.querySelector(".modal-rate-input"),
+    submitRecipeRating: document.querySelector(".modal-rating-raiting")
 }
 // заповнення модалки даними рецепту
 
 const renderModals = (data) => {
-console.log(data);
+// console.log(data);
    
     refs.recipeName.textContent = data.title;
     refs.recipeRating.textContent = data.rating;
@@ -88,8 +94,10 @@ console.log(data);
         refs.favBtn.textContent = "Add to favorite"
         refs.favBtn.setAttribute("favorites",0)
     }
+    refs.ratingBtn.setAttribute("id", data._id)
+    refs.ratingBtn.setAttribute("desc", data.description)
 }
-// очистка полыв модалки
+// очистка полів модалки
 const clearModalFields = () => {
     refs.recipeName.textContent = "";
     refs.recipeRating.textContent = "";
@@ -122,6 +130,7 @@ const closeModal = () => {
     document.body.style.overflow = "";
     clearModalFields();
     document.removeEventListener("keydown", escList);
+    closeModalRating();
 } 
 
 //відкриття модалки
@@ -134,6 +143,25 @@ const openModal = () => {
             closeModal()
         }  
     })
+} 
+
+const openModalRating = () => {
+    refs.ratingDesc.textContent = refs.ratingBtn.attributes.desc.value;
+    document.body.style.overflow = "hidden";
+    refs.modalRating.classList.add("active")
+    refs.modal.classList.remove("active");
+}
+
+const closeModalRating = () => { 
+    refs.overlay.classList.remove("active");
+    refs.modalRating.classList.remove("active");
+    document.body.style.overflow = "";
+    clearModalFields();
+    document.removeEventListener("keydown", escList);
+    refs.submitRatingEmail.value = "";
+        refs.ratingBtn.attributes.id.value = "";
+        document.querySelector("#rating-1").checked = true;
+        refs.submitRecipeRating.textContent = 1;
 } 
 
 //лістнери модалки
@@ -152,7 +180,10 @@ refs.recipe.addEventListener("click", (evt) => {
 refs.closeModalBtn.addEventListener("click", closeModal);
 
 refs.overlay.addEventListener("click", (evt) => {
-    if (evt.target === evt.currentTarget) { closeModal() }
+    if (evt.target === evt.currentTarget) {
+        closeModal();
+        closeModalRating();
+    }
     if (evt.target.type === "button") {
         if (evt.target.attributes.favorites.value === "1") {                
             refs.favBtn.textContent = "Add to favorite"
@@ -167,3 +198,20 @@ refs.overlay.addEventListener("click", (evt) => {
     }
 })
 
+const rating = document.querySelector(".modal-staring")
+const rat = document.querySelector(".modal-rating-raiting")
+
+rating.addEventListener("change",(evt)=>{rat.textContent = evt.target.value;})
+refs.ratingBtn.addEventListener("click", openModalRating)
+refs.submitRatingBth.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    const emailFormat = "[a-z, A-Z, 0-9, ._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    if (refs.submitRatingEmail.value.match(emailFormat)) {
+        console.log(refs.ratingBtn.attributes);
+        console.log(`{ID: "${refs.ratingBtn.attributes.id.value}" , email: ${refs.submitRatingEmail.value}, rating: ${refs.submitRecipeRating.textContent}}`);
+        closeModalRating();    
+    }
+    else {
+        refs.submitRatingEmail.value = refs.submitRatingEmail.value;
+    }
+})
