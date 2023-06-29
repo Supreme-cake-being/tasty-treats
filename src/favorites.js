@@ -125,6 +125,11 @@ function renderPage() {
 
 function renderCard({ _id, preview, title, description, rating }) {
   const starRating = [];
+
+  rating = Math.floor(rating)
+  if (rating > 5)
+    rating = 5; 
+
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
       starRating.push(`<li>
