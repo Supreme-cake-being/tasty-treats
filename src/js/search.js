@@ -189,6 +189,7 @@ const onRenderPage = async (page) => {
       searchTime.value
     );
 
+    
     if (response.results.length === 0)
       return container.classList.add('is-hidden');
 
