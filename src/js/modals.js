@@ -1,5 +1,5 @@
 import { fetchRecipesById, fetchRecipes } from "./service/API";
-import { renderPage } from "../favorites";
+// import { renderPage } from "../favorites";
 
 
 
