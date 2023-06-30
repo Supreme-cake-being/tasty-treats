@@ -1,0 +1,125 @@
+.theme-switch {
+  display: inline-block;
+  width: 46px;
+  height: 20px;
+  border-radius: 10px;
+  background: #cecdcd;
+  position: relative;
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.theme-switch::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f8f8f8;
+  top: 0;
+  left: 0;
+  transition-duration: 300ms;
+  z-index: 1;
+}
+
+.theme-switch.dark {
+  background-color: #333333;
+}
+
+.theme-switch.dark::before {
+  transform: translateX(20px);
+  background-color: #000000;
+}
+
+.theme-switch.active {
+  background-color: #9bb537;
+}
+
+.theme-switch.active::before {
+  transform: translateX(26px);
+  background-color: #ffffff;
+}
+
+.light {
+  background-color: #ffffff;
+}
+
+.dark {
+  background-color: #333333;
+}
+
+.dark .menu {
+  background-color: #333333;
+}
+
+@media screen and (max-width: 767px) {
+  .theme-switch {
+    display: none;
+  }
+
+  .burger-switch {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    margin-top: 526px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .theme-switch {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition-duration: 300ms;
+  }
+
+  .burger-switch {
+    display: none;
+  }
+}
+
+.burger-switch {
+  display: inline-block;
+  width: 46px;
+  height: 20px;
+  border-radius: 10px;
+  background: #cecdcd;
+  position: relative;
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.burger-switch::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f8f8f8;
+  top: 0;
+  left: 0;
+  transition-duration: 300ms;
+  z-index: 1;
+}
+
+.burger-switch.dark {
+  background-color: #333333;
+}
+
+.burger-switch.dark::before {
+  transform: translateX(20px);
+  background-color: #000000;
+}
+
+.burger-switch.active {
+  background-color: #9bb537;
+}
+
+.burger-switch.active::before {
+  transform: translateX(26px);
+  background-color: #ffffff;
+}
