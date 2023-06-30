@@ -186,6 +186,7 @@ refs.recipe.addEventListener("click", (evt) => {
                     localStorage.setItem('favorites', JSON.stringify([favorites, { _id, preview, title, description, rating, category }].flat()));
                 if (window.location.href.includes('favorites.html')) {
                     renderPage();
+                    closeModal();
                 }
                 return;
                 }
@@ -193,6 +194,7 @@ refs.recipe.addEventListener("click", (evt) => {
             localStorage.setItem('favorites', JSON.stringify(newFavorites));
             if (window.location.href.includes('favorites.html')) {
                 renderPage();
+                closeModal();
             };
         });
         // addToFavorites();
