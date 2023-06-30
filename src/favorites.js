@@ -201,6 +201,8 @@ function renderPagination(favorites, totalItems, page) {
   if (totalItems <= itemsPerPage) {
     document.getElementById('tui-pagination-container').style.display = 'none';
     return;
+  } else {
+    document.getElementById('tui-pagination-container').style.display = '';
   }
   pagination = new Pagination(
     document.getElementById('tui-pagination-container'),
