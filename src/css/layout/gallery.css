@@ -154,13 +154,33 @@
   }
 }
 
-.no-result-message{
+.no-result-message {
   text-align: center;
   color: inherit;
   color: rgba(5, 5, 5, 0.6);
 }
 
-.search-failure-icon{
+@media screen and (max-width: 767px) {
+  .no-result-message {
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .no-result-message {
+    margin-top: 300px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .no-result-message {
+    margin-top: 400px;
+  }
+}
+
+.search-failure-icon {
   margin-bottom: 15px;
   margin: 0 auto;
   width: 68px;
