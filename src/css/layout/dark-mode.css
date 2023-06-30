@@ -21,7 +21,23 @@
   transition-duration: 300ms;
   z-index: 1;
 }
+.dark .category-btn {
+  color: rgba(255, 255, 255, 0.3);
+}
+.dark .label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.dark .popular-recipes-title,
+.dark .recipe-title,
+.dark .hero-title,
+.dark .hero-caption,
+.dark .header_logo {
+  color: #fff;
+}
 
+.dark .recipe-description {
+  color: rgba(255, 255, 255, 0.8);
+}
 .theme-switch.dark {
   background-color: #333333;
 }
