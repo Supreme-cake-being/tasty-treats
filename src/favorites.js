@@ -164,6 +164,10 @@ function renderCard({ _id, preview, title, description, rating }) {
 }
 
 function renderPagination(favorites, totalItems, page) {
+  if (totalItems <= itemsPerPage) {
+    document.getElementById('tui-pagination-container').style.display = 'none';
+    return;
+  }
   pagination = new Pagination(
     document.getElementById('tui-pagination-container'),
     {
@@ -196,7 +200,5 @@ function renderPagination(favorites, totalItems, page) {
     renderFavotites(favorites, selectedCategory);
   });
 }
-
-// renderPagination();
 
 renderPage();

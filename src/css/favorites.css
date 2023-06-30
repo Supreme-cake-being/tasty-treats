@@ -1,3 +1,7 @@
+.favorites-container {
+  margin-bottom: 64px;
+}
+
 .hero-favotites {
   margin-bottom: 40px;
 }
@@ -69,7 +73,12 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .gallery-list.favorites {
+    row-gap: 32px;
+  }
+
   .card-recipe.favorit-recipe {
-    min-width: 258px;
+    width: 258px;
+    height: 287px;
   }
 }
