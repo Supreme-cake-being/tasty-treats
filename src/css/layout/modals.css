@@ -31,25 +31,23 @@
   transition: opacity 250ms ease-in-out, pointer-events 250ms ease-in-out;
 }
 
-@media screen and (min-width: 375px) {
-  .modal {
-    opacity: 0;
-    visibility: hidden;
-    /* visibility: visible; */
-    width: 335px;
-    height: 1171px;
-    padding: 40px 20px 40px 20px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: rgba(255, 255, 255, 1);
-    text-align: center;
-    z-index: 100;
-    transform: translate(-50%, -50%);
-    transition: opacity 250ms ease-in-out;
-    transition-delay: 100ms;
-    border-radius: 15px;
-  }
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  /* visibility: visible; */
+  width: 335px;
+  height: 1171px;
+  padding: 40px 20px 40px 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  transition: opacity 250ms ease-in-out;
+  transition-delay: 100ms;
+  border-radius: 15px;
 }
 
 @media screen and (min-width: 768px) {
@@ -72,17 +70,15 @@
   visibility: visible;
 }
 
-@media screen and (min-width: 375px) {
-  .modal-close {
-    top: 14px;
-    right: 14px;
-    width: 20px;
-    height: 20px;
-    padding: 4px;
-    position: absolute;
-    stroke: #000;
-    cursor: pointer;
-  }
+.modal-close {
+  top: 14px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  position: absolute;
+  stroke: #000;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -95,13 +91,11 @@
   }
 }
 
-@media screen and (min-width: 375px) {
-  .modal-recipe-intro {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
+.modal-recipe-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
 @media screen and (min-width: 768px) {
@@ -113,12 +107,10 @@
   }
 }
 
-@media screen and (min-width: 375px) {
-  .modal-recipe-video {
-    width: 295px;
-    height: 295px;
-    border-radius: 8px;
-  }
+.modal-recipe-video {
+  width: 295px;
+  height: 295px;
+  border-radius: 8px;
 }
 
 iframe {
@@ -132,13 +124,11 @@ iframe {
   }
 }
 
-@media screen and (min-width: 375px) {
-  .modal-recipe-info {
-    display: flex;
-    /* flex-direction: row; */
-    gap: 16px;
-    margin-bottom: 32px;
-  }
+.modal-recipe-info {
+  display: flex;
+  /* flex-direction: row; */
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 @media screen and (min-width: 768px) {
@@ -191,13 +181,11 @@ iframe {
   gap: 1px;
 }
 
-@media screen and (min-width: 375px) {
-  .modal-tag {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
+.modal-tag {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 @media screen and (min-width: 768px) {
@@ -219,16 +207,14 @@ iframe {
   /* */
 }
 
-@media screen and (min-width: 375px) {
-  .modal-ingredients {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    border-bottom: 1px solid rgba(5, 5, 5, 0.1);
-    gap: 10px;
-    overflow-y: scroll;
-    max-height: 224px;
-  }
+.modal-ingredients {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.1);
+  gap: 10px;
+  overflow-y: scroll;
+  max-height: 224px;
 }
 
 /* @media screen and (min-width: 768px) {
@@ -259,18 +245,16 @@ iframe {
   border-bottom: 1px solid rgba(5, 5, 5, 0.1);
 }
 
-@media screen and (min-width: 375px) {
-  .modal-recipe-desk {
-    color: rgba(5, 5, 5, 0.8);
-    text-align: start;
-    margin-bottom: 40px;
-    overflow-y: scroll;
-    max-height: 288px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
-    height: 288px;
-  }
+.modal-recipe-desk {
+  color: rgba(5, 5, 5, 0.8);
+  text-align: start;
+  margin-bottom: 40px;
+  overflow-y: scroll;
+  max-height: 288px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  height: 288px;
 }
 
 @media screen and (min-width: 768px) {
@@ -349,25 +333,23 @@ iframe {
   background-color: rgba(155, 181, 55, 1);
 }
 
-@media screen and (min-width: 375px) {
-  .modal-rating {
-    opacity: 0;
-    visibility: hidden;
-    width: 335;
-    height: 348;
-    padding: 20px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: rgba(255, 255, 255, 1);
-    /* text-align: left; */
-    color: rgba(5, 5, 5, 1);
-    z-index: 100;
-    transform: translate(-50%, -50%);
-    transition: opacity 250ms ease-in-out;
-    transition-delay: 100ms;
-    border-radius: 15px;
-  }
+.modal-rating {
+  opacity: 0;
+  visibility: hidden;
+  width: 335;
+  height: 348;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  /* text-align: left; */
+  color: rgba(5, 5, 5, 1);
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  transition: opacity 250ms ease-in-out;
+  transition-delay: 100ms;
+  border-radius: 15px;
 }
 
 @media screen and (min-width: 768px) {

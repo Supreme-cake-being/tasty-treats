@@ -40,8 +40,10 @@ const refs = {
     submitRecipeRating: document.querySelector(".modal-rating-raiting")
 }
 // заповнення модалки даними рецепту
-const renderModals = (data) => {
-console.log(data);
+const renderModals = (data) => {   
+    data.rating = Math.floor(data.rating)
+    if (data.rating > 5)
+        data.rating = 5; 
    
     refs.recipeName.textContent = data.title;
     refs.recipeRating.textContent = data.rating;
@@ -54,6 +56,7 @@ console.log(data);
     }
 
     const starRating = [];
+
     for (let i = 0; i < 5; i++) {
         if (i < Math.floor(data.rating)) {    
             starRating.push(`<svg class="star">
@@ -164,9 +167,9 @@ const openModal = () => {
 
 //лістнери модалки
 refs.recipe.addEventListener("click", (evt) => {
-    if (evt.target.nodeName !== "BUTTON")
+    if (evt.target.nodeName !== "BUTTON" || evt.target.classList.contains('card-favorites-btn'))
         return;
-
+    
     fetchRecipesById(evt.target.getAttribute('data-id'))
         .then((data) => {
             evt.stopPropagation();
