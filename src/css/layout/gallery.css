@@ -131,7 +131,6 @@
 .card-rating {
   display: flex;
   align-items: center;
-  gap: 4px;
 }
 
 .card-star {
@@ -152,4 +151,36 @@
     height: 287px;
     /* margin: 0px 15px 30px 0px; */
   }
+}
+
+.no-result-message {
+  text-align: center;
+  color: rgba(5, 5, 5, 0.6);
+}
+
+@media screen and (max-width: 767px) {
+  .no-result-message {
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .no-result-message {
+    margin-top: 300px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .no-result-message {
+    margin-top: 400px;
+  }
+}
+
+.search-failure-icon {
+  margin-bottom: 15px;
+  margin: 0 auto;
+  width: 68px;
+  height: 58px;
 }
