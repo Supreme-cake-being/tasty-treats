@@ -4,6 +4,7 @@
 
 .tui-pagination {
   margin-top: 40px;
+  margin-bottom: 40px;
 
   display: flex;
   align-items: center;
@@ -13,6 +14,7 @@
 @media screen and (min-width: 768px) {
   .tui-pagination {
     margin-top: 64px;
+    margin-bottom: 64px;
   }
 }
 
@@ -114,6 +116,10 @@
 }
 
 .tui-page-btn.tui-is-selected.tui-last-child {
+  margin: 0;
+}
+
+.tui-page-btn.tui-page.tui-last-child {
   margin: 0;
 }
 
