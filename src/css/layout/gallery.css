@@ -131,7 +131,6 @@
 .card-rating {
   display: flex;
   align-items: center;
-  gap: 4px;
 }
 
 .card-star {

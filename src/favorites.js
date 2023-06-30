@@ -12,6 +12,35 @@ let selectedCategory;
 let pagination;
 const itemsPerPage = 12;
 
+pagination = new Pagination(
+    document.getElementById('tui-pagination-container'),
+    {
+      page: 1,
+      visiblePages: 3,
+      itemsPerPage: itemsPerPage,
+      totalItems: 0,
+      firstItemClassName: 'tui-first-child',
+      lastItemClassName: 'tui-last-child',
+      template: {
+        page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+        currentPage:
+          '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        moveButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}"></span>' +
+          '</a>',
+        disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+          '<span class="tui-ico-{{type}}"></span>' +
+          '</span>',
+        moreButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+          '<span class="tui-ico-ellip">...</span>' +
+          '</a>',
+      },
+    }
+  );
+
 function renderCategories(categories, favorites) {
   refs.categories.innerHTML = '';
   if (!categories) {
@@ -111,7 +140,10 @@ function renderPage() {
   const favorites = JSON.parse(localStorage.getItem('favorites'));
   if (!favorites || !favorites.length) {
     refs.noData.style.display = 'flex';
-    document.querySelector('.hero-favotites').style.display = 'none';
+    if (window.innerWidth < 767)
+      document.querySelector('.hero-favotites').style.display = 'none';
+    else
+      document.querySelector('.hero-favotites').style.display = 'block'; 
     document.getElementById('tui-pagination-container').style.display = 'none';
     renderFavotites(favorites);
     renderCategories(null, favorites);
@@ -202,3 +234,7 @@ function renderPagination(favorites, totalItems, page) {
 }
 
 renderPage();
+
+window.onresize = () => {
+  renderPage();
+}
