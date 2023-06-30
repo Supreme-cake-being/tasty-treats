@@ -235,8 +235,8 @@ function renderPagination(favorites, totalItems, page) {
 
 renderPage();
 
-window.onresize = () => {
-  renderPage();
-}
+// window.onresize = () => {
+//   renderPage();
+// }
 
-export {renderPage}
+// export {renderPage}
