@@ -202,3 +202,5 @@ function renderPagination(favorites, totalItems, page) {
 }
 
 renderPage();
+
+export {renderPage}
