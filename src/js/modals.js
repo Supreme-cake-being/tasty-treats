@@ -49,10 +49,10 @@ const renderModals = (data) => {
     refs.recipeRating.textContent = data.rating;
     
     if ( data.youtube === "" ){
-        refs.recipeVideo.src = data.preview
+        refs.recipeVideo.setAttribute("src",data.preview)
     }
     else {
-        refs.recipeVideo.src = data.youtube.replace("watch?v=", "embed/")
+        refs.recipeVideo.setAttribute("src",data.youtube.replace("watch?v=", "embed/"))
     }
 
     const starRating = [];
@@ -60,12 +60,12 @@ const renderModals = (data) => {
     for (let i = 0; i < 5; i++) {
         if (i < Math.floor(data.rating)) {    
             starRating.push(`<svg class="star">
-                                <use href="./img/icons.svg#icon-star-colored"></use>
+                                <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-colored"></use>
                             </svg>`);
         }
         else {
             starRating.push(`<svg class="star">
-                                <use href="./img/icons.svg#icon-star-no-colored"></use>
+                                <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-no-colored"></use>
                             </svg>`);
         }
     }
