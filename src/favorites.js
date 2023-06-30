@@ -239,4 +239,4 @@ renderPage();
 //   renderPage();
 // }
 
-// export {renderPage}
+export {renderPage}
