@@ -13,33 +13,33 @@ let pagination;
 const itemsPerPage = 12;
 
 pagination = new Pagination(
-    document.getElementById('tui-pagination-container'),
-    {
-      page: 1,
-      visiblePages: 3,
-      itemsPerPage: itemsPerPage,
-      totalItems: 0,
-      firstItemClassName: 'tui-first-child',
-      lastItemClassName: 'tui-last-child',
-      template: {
-        page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
-        currentPage:
-          '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-        moveButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}"></span>' +
-          '</a>',
-        disabledMoveButton:
-          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}"></span>' +
-          '</span>',
-        moreButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-          '<span class="tui-ico-ellip">...</span>' +
-          '</a>',
-      },
-    }
-  );
+  document.getElementById('tui-pagination-container'),
+  {
+    page: 1,
+    visiblePages: 3,
+    itemsPerPage: itemsPerPage,
+    totalItems: 0,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn tui-page">{{page}}</a>',
+      currentPage:
+        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
+    },
+  }
+);
 
 function renderCategories(categories, favorites) {
   refs.categories.innerHTML = '';
@@ -136,14 +136,16 @@ function renderFavotites(favorites, selectedCategory) {
   refs.favorites.append(...items);
 }
 
+window.addEventListener('refresh-favorites', renderPage);
+
 function renderPage() {
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   if (!favorites || !favorites.length) {
     refs.noData.style.display = 'flex';
-    //if (window.innerWidth < 767)
-      document.querySelector('.hero-favotites').style.display = 'none';
-    //else
-      //document.querySelector('.hero-favotites').style.display = 'block'; 
+    // if (window.innerWidth < 767)
+    //   document.querySelector('.hero-favotites').style.display = 'none';
+    // else
+    //   document.querySelector('.hero-favotites').style.display = 'block';
     document.getElementById('tui-pagination-container').style.display = 'none';
     renderFavotites(favorites);
     renderCategories(null, favorites);
@@ -239,4 +241,5 @@ renderPage();
 //   renderPage();
 // }
 
-export {renderPage}
+
+// export {renderPage}
