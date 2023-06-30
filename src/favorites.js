@@ -139,7 +139,7 @@ function renderFavotites(favorites, selectedCategory) {
 window.addEventListener('refresh-favorites', renderPage);
 
 function renderPage() {
-  const favorites = JSON.parse(localStorage.getItem('favorites'));
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   if (!favorites || !favorites.length) {
     refs.noData.style.display = 'flex';
     // if (window.innerWidth < 767)
@@ -240,5 +240,6 @@ renderPage();
 // window.onresize = () => {
 //   renderPage();
 // }
+
 
 // export {renderPage}
