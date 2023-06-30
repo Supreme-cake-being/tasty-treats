@@ -1,4 +1,5 @@
 import { fetchRecipesById, fetchRecipes } from "./service/API";
+import { renderPage } from "../favorites";
 
 
 
@@ -183,10 +184,18 @@ refs.recipe.addEventListener("click", (evt) => {
                 const { _id, preview, title, description, rating, category } = result;
                 if (!favorites.find(favorite => favorite._id === result._id)) {
                     localStorage.setItem('favorites', JSON.stringify([favorites, { _id, preview, title, description, rating, category }].flat()));
+                if (window.location.href.includes('favorites.html')) {
+                    renderPage();
+                    closeModal();
+                }
                 return;
                 }
             const newFavorites = favorites.filter(favorite => favorite._id !== result._id);
             localStorage.setItem('favorites', JSON.stringify(newFavorites));
+            if (window.location.href.includes('favorites.html')) {
+                renderPage();
+                closeModal();
+            };
         });
         // addToFavorites();
     })

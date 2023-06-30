@@ -238,3 +238,5 @@ renderPage();
 window.onresize = () => {
   renderPage();
 }
+
+export {renderPage}
