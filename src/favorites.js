@@ -140,9 +140,9 @@ function renderPage() {
   const favorites = JSON.parse(localStorage.getItem('favorites'));
   if (!favorites || !favorites.length) {
     refs.noData.style.display = 'flex';
-    if (window.innerWidth < 767)
+    // if (window.innerWidth < 767)
       document.querySelector('.hero-favotites').style.display = 'none';
-    else
+    // else
       document.querySelector('.hero-favotites').style.display = 'block'; 
     document.getElementById('tui-pagination-container').style.display = 'none';
     renderFavotites(favorites);
@@ -239,4 +239,4 @@ renderPage();
 //   renderPage();
 // }
 
-// export {renderPage}
+export {renderPage}
