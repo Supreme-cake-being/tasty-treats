@@ -41,6 +41,11 @@
   letter-spacing: 0.02em;
   color: var(--light-theme-text);
   position: relative;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+  }
 }
 
 .header_burger-btn {

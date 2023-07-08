@@ -41,3 +41,7 @@ headerLinks.forEach(link => {
     link.classList.add('active');
   }
 });
+
+if ([...headerLinks].every(link => !link.classList.contains('active'))) {
+  headerLinks[0].classList.add('active');
+}
