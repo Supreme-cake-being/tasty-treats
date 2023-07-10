@@ -101,16 +101,17 @@ function moveElement() {
   }
 }
 
-recipesList.addEventListener('click', evt => {
-  if (evt.target.nodeName !== 'IMG') return;
+recipesList.addEventListener('click', e => {
+  if (e.target.nodeName !== 'IMG') return;
 
-  fetchRecipesById(evt.target.getAttribute('data-id')).then(data => {
-    evt.stopPropagation();
+  fetchRecipesById(e.target.getAttribute('data-id')).then(data => {
+    e.stopPropagation();
     renderModals(data);
     openModal();
 
-    refs.favBtn.addEventListener('click', async () => {
-      const id = refs.favBtn.getAttribute('data-id');
+    const favoriteBtn = document.querySelector('.modal-fav-btn');
+    favoriteBtn.addEventListener('click', async () => {
+      const id = favoriteBtn.getAttribute('data-id');
       const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
       const result = await fetchRecipesById(id);
       const { _id, preview, title, description, rating, category } = result;
