@@ -39,7 +39,7 @@ const refs = {
   submitRecipeRating: document.querySelector('.modal-rating-raiting'),
 };
 // заповнення модалки даними рецепту
-const renderModals = data => {
+export const renderModals = data => {
   data.rating = Math.floor(data.rating);
   if (data.rating > 5) data.rating = 5;
 
@@ -148,7 +148,7 @@ const closeModal = () => {
 };
 
 //відкриття модалки
-const openModal = () => {
+export const openModal = () => {
   document.body.style.overflow = 'hidden';
   refs.overlay.classList.add('active');
   refs.modal.classList.add('active');

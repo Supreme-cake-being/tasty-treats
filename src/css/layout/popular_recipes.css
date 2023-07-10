@@ -88,6 +88,8 @@
   object-fit: cover;
   margin-right: 16px;
   border-radius: 8px;
+
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
