@@ -19,9 +19,8 @@
 
 .card-recipe {
   width: 335px;
-  height: 287px;
+  height: 335px;
   position: relative;
-  /* margin: 0px auto 20px auto; */
   border-radius: 15px;
   background-image: linear-gradient(
     0.94deg,
