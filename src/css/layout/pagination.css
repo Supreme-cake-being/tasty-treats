@@ -143,3 +143,19 @@
     margin-right: 10px;
   }
 }
+
+/* Dark mode */
+.dark .tui-page-btn.tui-page {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .tui-page-btn.tui-first-child,
+.dark .tui-page-btn.tui-last-child {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .tui-is-selected {
+  color: #ffffff;
+}

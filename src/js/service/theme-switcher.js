@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const themeSwitch = document.getElementById('themeSwitch');
-  const themeSwitchBurger = document.getElementById('themeSwitchBurger');
-  const body = document.getElementsByTagName('body')[0];
+  const themeSwitch = document.querySelector('#themeSwitch');
+  const themeSwitchBurger = document.querySelector('#themeSwitchBurger');
+  const body = document.querySelector('body');
 
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (savedTheme === 'dark') {
       themeSwitch.classList.add('active');
+      themeSwitchBurger.classList.add('active');
     }
   }
 
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (body.classList.contains('dark')) {
       localStorage.setItem('theme', 'dark');
     } else {
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', '');
     }
   });
 
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (body.classList.contains('dark')) {
       localStorage.setItem('theme', 'dark');
     } else {
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', '');
     }
   });
 });

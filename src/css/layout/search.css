@@ -1,5 +1,6 @@
 :root {
   --light-theme-placeholder-text: rgba(5, 5, 5, 0.2);
+  --dark-theme-placeholder-text: rgba(255, 255, 255, 0.5);
 }
 
 .search-container {
@@ -39,6 +40,8 @@
   font-size: 14px;
   color: var(--light-theme-btn-text);
   padding: 14px 18px;
+
+  background-color: transparent;
 }
 
 .input-search::placeholder,
@@ -58,6 +61,8 @@
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
+
+  fill: rgba(5, 5, 5, 0.5);
 }
 
 .input-search {
@@ -147,4 +152,30 @@
   .fourth {
     flex-basis: auto;
   }
+}
+
+/* Dark mode */
+.dark .input-search,
+.dark .select-time,
+.dark .select-area,
+.dark .select-ingredients {
+  border-color: var(--dark-theme-placeholder-text);
+  color: var(--dark-theme-placeholder-text);
+}
+
+.dark .select-time option,
+.dark .select-area option,
+.dark .select-ingredients option {
+  color: var(--light-theme-placeholder-text);
+}
+
+.dark .input-search::placeholder,
+.dark .select-time::placeholder,
+.dark .select-area::placeholder,
+.dark .select-ingredients::placeholder {
+  color: var(--dark-theme-btn-text);
+}
+
+.dark .search-icon {
+  fill: var(--dark-theme-placeholder-text);
 }

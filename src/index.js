@@ -7,4 +7,3 @@ import './js/header';
 import './js/pagination';
 import './js/modals';
 import './js/popular-recipes';
-import './js/service/theme-switcher';

@@ -112,6 +112,12 @@
   background-color: var(--accent-color);
 
   border-radius: 8px;
+
+  transition: color 250ms var(--animation);
+
+  &:hover {
+    color: #050505;
+  }
 }
 
 .card-additional-info {
