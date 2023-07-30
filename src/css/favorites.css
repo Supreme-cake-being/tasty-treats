@@ -59,9 +59,11 @@
   margin-bottom: 32px;
 }
 
-.categories button.active {
+.categories button.active,
+.categories button:hover,
+.categories button:focus {
   background-color: var(--accent-color);
-  border-color: currentColor;
+  border-color: transparent;
   color: var(--dark-theme-text);
 }
 
@@ -106,4 +108,14 @@
     width: 258px;
     height: 287px;
   }
+}
+
+/* Dark mode */
+.dark .categories-btn {
+  color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .no-data {
+  color: #ffffff;
 }

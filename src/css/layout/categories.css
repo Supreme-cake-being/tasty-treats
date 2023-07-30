@@ -12,9 +12,10 @@
 
 .categories-btn.active {
   background-color: var(--accent-color);
-  border-color: currentColor;
+  border-color: transparent;
   color: var(--dark-theme-text);
 }
+
 .category-btn.active {
   color: var(--accent-color);
 }
@@ -28,13 +29,14 @@
   border: 1px solid rgba(5, 5, 5, 0.2);
   border-radius: 15px;
   margin-bottom: 24px;
-  transition: var(--animation);
+  transition: background-color 250ms var(--animation),
+    color 250ms var(--animation);
 }
 
 .categories-btn:focus,
 .categories-btn:hover {
   background-color: var(--accent-color);
-  border-color: currentColor;
+  border-color: transparent;
   color: var(--dark-theme-text);
 }
 
@@ -50,7 +52,8 @@
   font-weight: 500;
   color: var(--light-theme-categories-text);
   background-color: transparent;
-  transition: var(--animation);
+
+  transition: color 250ms var(--animation);
 }
 
 .category-btn:focus,
@@ -95,4 +98,30 @@
   .categories-list {
     width: 235px;
   }
+}
+
+/* Dark mode */
+.dark .categories-btn {
+  color: var(--dark-theme-btn-text);
+  border-color: var(--dark-theme-btn-text);
+
+  transition: background-color 250ms var(--animation),
+    color 250ms var(--animation), border-color 250ms var(--animation);
+}
+
+.dark .categories-btn.active,
+.dark .categories-btn:hover,
+.dark .categories-btn:focus {
+  color: #fff;
+  border-color: transparent;
+}
+
+.dark .category-btn {
+  color: var(--dark-theme-btn-text);
+}
+
+.dark .category-btn.active,
+.dark .category-btn:hover,
+.dark .category-btn:focus {
+  color: var(--accent-color);
 }

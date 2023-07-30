@@ -15,6 +15,9 @@
   display: flex;
   align-items: center;
   gap: 14px;
+
+  fill: transparent;
+  stroke: #050505;
 }
 
 .header_list {
@@ -214,4 +217,21 @@
   .header_logo {
     margin-right: 405px;
   }
+}
+
+/* Dark mode */
+.dark .header_link {
+  color: #f8f8f8;
+}
+
+.dark .header_link.active {
+  color: var(--accent-color);
+}
+
+.dark .header_icon {
+  stroke: #ffffff;
+}
+
+.dark .header_burger-btn {
+  stroke: #ffffff;
 }

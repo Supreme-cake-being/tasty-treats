@@ -1,3 +1,5 @@
+import './service/theme-switcher';
+
 (() => {
   const refs = {
     openMenuBtn: document.querySelector('.menu-open'),

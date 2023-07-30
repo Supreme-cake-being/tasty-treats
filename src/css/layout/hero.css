@@ -291,6 +291,8 @@
   border-radius: 12px;
   border: 1px solid #9bb537;
 
+  transition: background-color 250ms var(--animation);
+
   @media (min-width: 768px) {
     width: 127px;
     height: 45px;
@@ -307,4 +309,27 @@
   color: #050505;
   font-size: 14px;
   font-weight: 500;
+
+  transition: color 250ms var(--animation);
+}
+
+.order-btn:hover {
+  background-color: #9bb537;
+}
+
+.order-btn:hover .order-btn--caption {
+  color: #ffffff;
+}
+
+/* Dark mode */
+.dark .order-btn--caption {
+  color: #ffffff;
+}
+
+.dark .swiper-pagination-bullet {
+  background-color: #fff;
+}
+
+.dark .swiper-pagination-bullet.active {
+  background-color: #9bb537;
 }
