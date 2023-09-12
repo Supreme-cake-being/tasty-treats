@@ -60,11 +60,11 @@ export const renderModals = data => {
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(data.rating)) {
       starRating.push(`<svg class="star">
-                                <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-colored"></use>
+                                <use href="/tasty-treats/assets/icons-80a76522.svg#icon-star-colored"></use>
                             </svg>`);
     } else {
       starRating.push(`<svg class="star">
-                                <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-no-colored"></use>
+                                <use href="/tasty-treats/assets/icons-80a76522.svg#icon-star-no-colored"></use>
                             </svg>`);
     }
   }

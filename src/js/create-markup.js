@@ -2,35 +2,34 @@ import { addToFavorites } from './add-favorites';
 
 const gallery = document.querySelector('.gallery-list');
 
-export const createMarkup = (array) => {
-    const markup = array.map(({ _id, preview, title, description, rating }) => {
-        const starRating = [];
+export const createMarkup = array => {
+  const markup = array
+    .map(({ _id, preview, title, description, rating }) => {
+      const starRating = [];
 
-        rating = Math.floor(rating)
-        if (rating > 5)
-            rating = 5;  
+      rating = Math.floor(rating);
+      if (rating > 5) rating = 5;
 
-        for (let i = 0; i < 5; i++) {
-            if (i < Math.floor(rating)) {    
-                starRating.push(`<li>
+      for (let i = 0; i < 5; i++) {
+        if (i < Math.floor(rating)) {
+          starRating.push(`<li>
                                     <svg class="card-star" width="18" height="18">
-                                        <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-colored"></use>
+                                        <use href="/tasty-treats/assets/icons-80a76522.svg#icon-star-colored"></use>
                                     </svg>
                                 </li>`);
-            }
-            else {
-                starRating.push(`<li>
+        } else {
+          starRating.push(`<li>
                                     <svg class="card-star" width="18" height="18">
-                                        <use href="/tasty-treats/assets/icons-e30ccde6.svg#icon-star-no-colored"></use>
+                                        <use href="/tasty-treats/assets/icons-80a76522.svg#icon-star-no-colored"></use>
                                     </svg>
                                 </li>`);
-            }
         }
-        return `<li class="card-recipe">
+      }
+      return `<li class="card-recipe">
             <img class="card-img" src="${preview}" />
             <button class="card-favorites-btn" data-id="${_id}" type="button">
                 <svg class="icon-heart" width="22" height="22">
-                    <use href="/tasty-treats/assets/icons-e30ccde6.svg#heart"></use>
+                    <use href="/tasty-treats/assets/icons-80a76522.svg#heart"></use>
                 </svg>
             </button>
             <div class="card-info">
@@ -42,11 +41,11 @@ export const createMarkup = (array) => {
                     <button type="button" class="card-button" data-id="${_id}">See recipe</button>
                 </div>
             </div>
-        </li>`
-    }).join('');
-    
+        </li>`;
+    })
+    .join('');
 
-    gallery.insertAdjacentHTML('beforeend', markup);
-    
-    addToFavorites();
-}
+  gallery.insertAdjacentHTML('beforeend', markup);
+
+  addToFavorites();
+};
